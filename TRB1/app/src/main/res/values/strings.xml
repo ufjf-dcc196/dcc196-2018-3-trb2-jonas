@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TRB1</string>
+    <string name="main_button_newEvent">Novo Evento</string>
+    <string name="main_button_newParticipant">Novo Participante</string>
 </resources>
