@@ -3,7 +3,7 @@ package br.ufjf.ice.trb1;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class RegisterParticipant extends AppCompatActivity {
+public class RegisterParticipantActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
