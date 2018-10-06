@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".CreateParticipantActivity" />
         <activity android:name=".CreateEventActivity" />
-        <activity android:name=".ViewParticipantDetailsActivity"></activity>
+        <activity android:name=".ViewParticipantDetailsActivity" />
+        <activity android:name=".ViewEventDetailsActivity"></activity>
     </application>
 
 </manifest>
