@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">TRB1</string>
-    <string name="main_button_newEvent">Novo Evento</string>
-    <string name="main_button_newParticipant">Novo Participante</string>
+    <string name="register_event">Cadastrar Evento</string>
+    <string name="register_participant">Cadastrar Participante</string>
+    <string name="participant_list">Participantes</string>
+    <string name="event_list">Eventos</string>
 </resources>
