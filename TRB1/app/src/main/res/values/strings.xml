@@ -5,4 +5,11 @@
     <string name="participant_list">Participantes</string>
     <string name="event_list">Eventos</string>
     <string name="register_item">Cadastrar</string>
+    <string name="participant_details_title">Dados do Participante</string>
+    <string name="participant_name_lbl">Nome</string>
+    <string name="partipant_name_ph"><![CDATA[<Nome Participante>]]></string>
+    <string name="participant_email_lbl">E-mail</string>
+    <string name="participant_mail_ph"><![CDATA[<E-mail Participante>]]></string>
+    <string name="participant_id_lbl">CPF</string>
+    <string name="participant_id_ph"><![CDATA[<CPF Participante>]]></string>
 </resources>
