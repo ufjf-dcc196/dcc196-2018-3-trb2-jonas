@@ -1,6 +1,15 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Participant {
+
+    private static ArrayList<Event> events;
+
+    public static ArrayList<Event> getSubscribed(){
+        if(events == null) events = new ArrayList<>();
+        return events;
+    }
 
     private String name;
     private String email;
