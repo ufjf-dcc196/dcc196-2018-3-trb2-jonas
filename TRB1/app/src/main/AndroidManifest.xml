@@ -25,7 +25,8 @@
         <activity android:name=".GetAllEvents" />
         <activity android:name=".GetAllParticipants" />
         <activity android:name=".SubscribeParticipant" />
-        <activity android:name=".EditEvent"></activity>
+        <activity android:name=".EditEvent" />
+        <activity android:name=".RegisterItem"></activity>
     </application>
 
 </manifest>
