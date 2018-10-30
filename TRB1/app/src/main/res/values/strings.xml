@@ -29,4 +29,5 @@
     <string name="add_participant_action">Adicionar Participante</string>
     <string name="name_hint">Preencha com seu nome completo</string>
     <string name="edit_participant_title">Editar Dados do Participante</string>
+    <string name="subscribe_on_event_title">Inscreva o participante em um evento</string>
 </resources>
