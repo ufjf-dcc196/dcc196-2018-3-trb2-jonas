@@ -30,4 +30,6 @@
     <string name="name_hint">Preencha com seu nome completo</string>
     <string name="edit_participant_title">Editar Dados do Participante</string>
     <string name="subscribe_on_event_title">Inscreva o participante em um evento</string>
+    <string name="save_modifications_action">Salvar mudanças</string>
+    <string name="edit_event_title">Editar Dados do Evento</string>
 </resources>

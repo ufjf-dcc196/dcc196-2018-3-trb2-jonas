@@ -24,7 +24,8 @@
         <activity android:name=".SubscribeOnEvent" />
         <activity android:name=".GetAllEvents" />
         <activity android:name=".GetAllParticipants" />
-        <activity android:name=".SubscribeParticipant"></activity>
+        <activity android:name=".SubscribeParticipant" />
+        <activity android:name=".EditEvent"></activity>
     </application>
 
 </manifest>
