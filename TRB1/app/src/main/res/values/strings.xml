@@ -26,4 +26,7 @@
     <string name="event_facilitator_ph"><![CDATA[<Nome do Facilitador>]]></string>
     <string name="event_description">Descrição</string>
     <string name="event_description_ph"><![CDATA[<Coloque uma descrição sucinta do evento>]]></string>
+    <string name="add_participant_action">Adicionar Participante</string>
+    <string name="name_hint">Preencha com seu nome completo</string>
+    <string name="edit_participant_title">Editar Dados do Participante</string>
 </resources>
