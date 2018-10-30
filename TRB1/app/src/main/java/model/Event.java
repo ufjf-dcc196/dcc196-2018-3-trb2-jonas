@@ -1,6 +1,22 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Event {
+
+    private static ArrayList<Participant> subscribed;
+
+    public static ArrayList<Participant> getSubscribed(){
+        if(subscribed == null) subscribed = new ArrayList<>();
+        return subscribed;
+    }
+
+    private Event(String eventTitle, int day, int hour, int facilitator){
+        setEventTitle(eventTitle);
+        setDay(day);
+        setHour(hour);
+        setFacilitator(facilitator);
+    }
 
     private String eventTitle;
     private int day;
