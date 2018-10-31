@@ -4,11 +4,18 @@ import java.util.ArrayList;
 
 public class Event {
 
-    public Event(String eventTitle, int day, int hour, String facilitator){
+    private String eventTitle;
+    private int day;
+    private int hour;
+    private String facilitator;
+    private String textDescription;
+
+    public Event(String eventTitle, int day, int hour, String facilitator, String textDescription){
         setEventTitle(eventTitle);
         setDay(day);
         setHour(hour);
         setFacilitator(facilitator);
+        setTextDescription(textDescription);
     }
 
     private static ArrayList<Participant> subscribed;
@@ -17,21 +24,13 @@ public class Event {
         if(subscribed == null) subscribed = new ArrayList<>();
         return subscribed;
     }
-
-    private String eventTitle;
-    private int day;
-    private int hour;
-    private String facilitator;
-
-    public int getTextDescription() {
+    public String getTextDescription() {
         return textDescription;
     }
 
-    public void setTextDescription(int textDescription) {
+    public void setTextDescription(String textDescription) {
         this.textDescription = textDescription;
     }
-
-    private int textDescription;
 
     public String getEventTitle() {
         return eventTitle;

@@ -1,5 +1,6 @@
 package br.ufjf.ice.trb1;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -37,8 +38,17 @@ public class GetAllEventsAdapter extends RecyclerView.Adapter<GetAllEventsAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull GetAllEventsViewHolder getAllEventsViewHolder, int i) {
+    public void onBindViewHolder(@NonNull GetAllEventsViewHolder getAllEventsViewHolder, final int i) {
         Event currentEvent = eventList.get(i);
+
+        getAllEventsViewHolder.eventTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), ViewEventDetailsActivity.class);
+                intent.putExtra("TITLE", eventList.get(i).getEventTitle());
+                v.getContext().startActivity(intent);
+            }
+        });
 
         getAllEventsViewHolder.eventTitle.setText(currentEvent.getEventTitle());
     }

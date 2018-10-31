@@ -13,7 +13,6 @@ public class ViewParticipantDetailsActivity extends AppCompatActivity {
     private TextView mail;
     private TextView id;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
