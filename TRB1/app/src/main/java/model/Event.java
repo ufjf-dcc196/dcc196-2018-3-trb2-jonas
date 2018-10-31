@@ -4,18 +4,18 @@ import java.util.ArrayList;
 
 public class Event {
 
-    private static ArrayList<Participant> subscribed;
-
-    public static ArrayList<Participant> getSubscribed(){
-        if(subscribed == null) subscribed = new ArrayList<>();
-        return subscribed;
-    }
-
     public Event(String eventTitle, int day, int hour, String facilitator){
         setEventTitle(eventTitle);
         setDay(day);
         setHour(hour);
         setFacilitator(facilitator);
+    }
+
+    private static ArrayList<Participant> subscribed;
+
+    public static ArrayList<Participant> getSubscribed(){
+        if(subscribed == null) subscribed = new ArrayList<>();
+        return subscribed;
     }
 
     private String eventTitle;

@@ -4,6 +4,12 @@ import java.util.ArrayList;
 
 public class Participant {
 
+    public Participant(String name, String email, String id){
+        setName(name);
+        setEmail(email);
+        setId(id);
+    }
+
     private static ArrayList<Event> events;
 
     public static ArrayList<Event> getSubscribed(){
@@ -13,7 +19,16 @@ public class Participant {
 
     private String name;
     private String email;
-    private String cpf;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    private String id;
 
     public String getName() {
         return name;
@@ -31,12 +46,5 @@ public class Participant {
         this.email = email;
     }
 
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
 
 }
