@@ -44,7 +44,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/p_name_details"
         android:layout_width="178dp"
         android:layout_height="23dp"
         android:layout_marginStart="16dp"
@@ -71,7 +71,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/p_mail_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -91,10 +91,10 @@
         android:layout_marginTop="24dp"
         android:text="@string/id_lbl"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/p_mail_details" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/p_id_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -103,7 +103,7 @@
         android:text="@string/participant_id_ph"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/p_mail_details" />
 
     <TextView
         android:id="@+id/textView9"
@@ -114,9 +114,10 @@
         android:layout_marginTop="28dp"
         android:text="@string/event_list"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/p_id_details" />
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/p_events_rv"
         android:layout_width="358dp"
         android:layout_height="129dp"
         android:layout_marginStart="16dp"
@@ -126,7 +127,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/subscribe_on_event_action"
         android:layout_width="359dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"

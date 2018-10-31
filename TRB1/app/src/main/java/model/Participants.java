@@ -18,6 +18,14 @@ public class Participants {
         allParticipants.add(new Participant("Sirius Black",  "blacks@hogwarts.castle","123456786"));
     }
 
+    public Participant searchFor(String name){
+        for (Participant p: getAllParticipants()) {
+            if(p.getName().equalsIgnoreCase(name))
+                return p;
+        }
+        return null;
+    }
+
     public static synchronized Participants getInstance(){
 
         if(instance == null) instance = new Participants();

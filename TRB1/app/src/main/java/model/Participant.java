@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class Participant {
 
-    public Participant(String name, String email, String id){
+    public Participant(String name, String mail, String id){
         setName(name);
-        setEmail(email);
+        setMail(mail);
         setId(id);
     }
 
@@ -18,7 +18,7 @@ public class Participant {
     }
 
     private String name;
-    private String email;
+    private String mail;
 
     public String getId() {
         return id;
@@ -38,12 +38,12 @@ public class Participant {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getMail() {
+        return mail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
 
