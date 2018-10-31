@@ -10,8 +10,8 @@ public class Events {
 
     private Events(){
        setAllEvents(new ArrayList<Event>());
-        allEvents.add(new Event("Android Hell: small-talking development", 1, 14, "John"));
-        allEvents.add(new Event("Real mobile: begin with React Native", 2, 14, "Arya"));
+        allEvents.add(new Event("Android Hell: Small-talking development", 1, 14, "John"));
+        allEvents.add(new Event("Real Mobile: Begin with React Native", 2, 14, "Arya"));
         allEvents.add(new Event("Creating RESTful APIs", 3, 14, "Eddard"));
         allEvents.add(new Event("DevOps on Real World", 1, 16, "Robb"));
         allEvents.add(new Event("AI: Are We Near to Doomsday?", 2, 16, "Sansa"));
