@@ -41,7 +41,7 @@ public class GetEventParticipantsAdapter extends RecyclerView.Adapter<GetEventPa
     @Override
     public void onBindViewHolder(@NonNull GetEventParticipantsAdapter.GetEventParticipantsViewHolder viewHolder, final int i) {
         Participant currentParticipant = participantsList.get(i);
-        
+
         viewHolder.participantName.setText(currentParticipant.getName());
     }
 
