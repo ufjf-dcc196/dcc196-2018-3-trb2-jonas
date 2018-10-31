@@ -25,6 +25,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:background="@color/colorAccent"
         android:drawableStart="@android:drawable/ic_menu_edit"
         android:drawableLeft="@android:drawable/ic_menu_edit"
         android:padding="16dp"
@@ -119,21 +120,21 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/p_events_rv"
         android:layout_width="358dp"
-        android:layout_height="129dp"
+        android:layout_height="148dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginBottom="76dp"
+        android:layout_marginBottom="56dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/subscribe_on_event_action"
-        android:layout_width="359dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_margin="5dp"
+        android:background="@color/colorAccent"
         android:text="@string/event_action"
+        android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
