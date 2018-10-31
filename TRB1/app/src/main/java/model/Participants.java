@@ -10,12 +10,12 @@ public class Participants {
 
     private Participants(){
         setAllParticipants(new ArrayList<Participant>());
-        allParticipants.add(new Participant("Participant 1", "1","1"));
-        allParticipants.add(new Participant("Participant 2", "1","1"));
-        allParticipants.add(new Participant("Participant 3", "1","1"));
-        allParticipants.add(new Participant("Participant 4", "1","1"));
-        allParticipants.add(new Participant("Participant 5",  "1","1"));
-        allParticipants.add(new Participant("Participant 6 ",  "1","1"));
+        allParticipants.add(new Participant("Harry Potter", "hp@hogwarts.castle","123456780"));
+        allParticipants.add(new Participant("Hermione Granger", "hermione.granger@hogwarts.castle","123456781"));
+        allParticipants.add(new Participant("Albus Dumbledore", "theboss@hogwarts.castle","123456782"));
+        allParticipants.add(new Participant("Draco Malfoy", "malfoydrake@hogwarts.castle","123456783"));
+        allParticipants.add(new Participant("Ronald Weasley",  "ron.weasley@hogwarts.castle","123456784"));
+        allParticipants.add(new Participant("Sirius Black",  "blacks@hogwarts.castle","123456786"));
     }
 
     public static synchronized Participants getInstance(){

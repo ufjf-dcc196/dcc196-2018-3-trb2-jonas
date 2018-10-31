@@ -10,12 +10,12 @@ public class Events {
 
     private Events(){
        setAllEvents(new ArrayList<Event>());
-        allEvents.add(new Event("Event 1", 1, 2, "Facilitator"));
-        allEvents.add(new Event("Event 2", 1, 2, "Facilitator"));
-        allEvents.add(new Event("Event 3", 1, 2, "Facilitator"));
-        allEvents.add(new Event("Event 4", 1, 2, "Facilitator"));
-        allEvents.add(new Event("Event 5", 1, 2, "Facilitator"));
-        allEvents.add(new Event("Event 6 ", 1, 2, "Facilitator"));
+        allEvents.add(new Event("Android Hell: small-talking development", 1, 14, "John"));
+        allEvents.add(new Event("Real mobile: begin with React Native", 2, 14, "Arya"));
+        allEvents.add(new Event("Creating RESTful APIs", 3, 14, "Eddard"));
+        allEvents.add(new Event("DevOps on Real World", 1, 16, "Robb"));
+        allEvents.add(new Event("AI: Are We Near to Doomsday?", 2, 16, "Sansa"));
+        allEvents.add(new Event("That Boring Language Workshop", 3, 16, "Bran"));
     }
 
     public static synchronized Events getInstance(){
