@@ -16,8 +16,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CreateParticipantActivity" />
-        <activity android:name=".CreateEventActivity" />
         <activity android:name=".ViewParticipantDetailsActivity" />
         <activity android:name=".ViewEventDetailsActivity" />
         <activity android:name=".EditParticipant" />
