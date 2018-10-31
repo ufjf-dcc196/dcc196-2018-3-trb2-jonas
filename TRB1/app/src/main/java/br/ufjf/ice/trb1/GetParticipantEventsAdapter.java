@@ -41,15 +41,6 @@ public class GetParticipantEventsAdapter extends RecyclerView.Adapter<GetPartici
     public void onBindViewHolder(@NonNull GetParticipantEventsAdapter.GetParticipantEventsViewHolder viewHolder, final int i) {
         Event currentEvent = eventList.get(i);
 
-        viewHolder.eventTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), ViewEventDetailsActivity.class);
-                intent.putExtra("TITLE", eventList.get(i).getEventTitle());
-                v.getContext().startActivity(intent);
-            }
-        });
-
         viewHolder.eventTitle.setText(currentEvent.getEventTitle());
     }
 

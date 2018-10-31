@@ -18,11 +18,11 @@
         </activity>
         <activity android:name=".ViewParticipantDetailsActivity" />
         <activity android:name=".ViewEventDetailsActivity" />
-        <activity android:name=".EditParticipant" />
-        <activity android:name=".SubscribeOnEvent" />
+        <activity android:name=".EditParticipantActivity" />
+        <activity android:name=".SubscribeOnEventActivity" />
         <activity android:name=".GetAllEvents" />
-        <activity android:name=".SubscribeParticipant" />
-        <activity android:name=".EditEvent" />
+        <activity android:name=".SubscribeParticipantActivity" />
+        <activity android:name=".EditEventActivity" />
     </application>
 
 </manifest>

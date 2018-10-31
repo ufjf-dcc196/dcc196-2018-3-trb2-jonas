@@ -130,6 +130,7 @@
         app:layout_constraintTop_toBottomOf="@+id/e_description_details" />
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/e_participants_rv"
         android:layout_width="358dp"
         android:layout_height="129dp"
         android:layout_marginStart="16dp"

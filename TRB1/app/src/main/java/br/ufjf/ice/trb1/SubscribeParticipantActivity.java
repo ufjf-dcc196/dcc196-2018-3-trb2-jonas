@@ -3,11 +3,11 @@ package br.ufjf.ice.trb1;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class EditParticipant extends AppCompatActivity {
+public class SubscribeParticipantActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_participant);
+        setContentView(R.layout.activity_subscribe_participant);
     }
 }

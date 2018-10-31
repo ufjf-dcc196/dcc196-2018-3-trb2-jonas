@@ -9,6 +9,7 @@ public class Event {
     private int hour;
     private String facilitator;
     private String textDescription;
+    private static ArrayList<Participant> subscribed = new ArrayList<>();;
 
     public Event(String eventTitle, int day, int hour, String facilitator, String textDescription){
         setEventTitle(eventTitle);
@@ -18,12 +19,24 @@ public class Event {
         setTextDescription(textDescription);
     }
 
-    private static ArrayList<Participant> subscribed;
-
-    public static ArrayList<Participant> getSubscribed(){
-        if(subscribed == null) subscribed = new ArrayList<>();
+    public static ArrayList<Participant> getParticipants() {
         return subscribed;
     }
+
+    public void addParticipant(Participant participant) {
+        Participant toSearch = this.searchFor(participant.getName());
+        if(toSearch == null)
+            Event.subscribed.add(participant);
+    }
+
+    public Participant searchFor(String name){
+        for (Participant p: this.getParticipants()) {
+            if(p.getName().equalsIgnoreCase(name))
+                return p;
+        }
+        return null;
+    }
+
     public String getTextDescription() {
         return textDescription;
     }

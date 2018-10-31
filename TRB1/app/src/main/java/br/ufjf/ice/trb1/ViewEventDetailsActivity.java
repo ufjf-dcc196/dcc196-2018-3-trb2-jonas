@@ -2,6 +2,8 @@ package br.ufjf.ice.trb1;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +19,10 @@ public class ViewEventDetailsActivity extends AppCompatActivity {
     private TextView hour;
     private TextView facilitator;
     private TextView description;
+
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +47,13 @@ public class ViewEventDetailsActivity extends AppCompatActivity {
             hour.setText(Integer.toString(result.getHour()));
             facilitator.setText(result.getFacilitator());
             description.setText(result.getTextDescription());
+
+            recyclerView = findViewById(R.id.e_participants_rv);
+            layoutManager = new LinearLayoutManager(this);
+            adapter = new GetEventParticipantsAdapter(result.getParticipants());
+
+            recyclerView.setLayoutManager(layoutManager);
+            recyclerView.setAdapter(adapter);
 
         } else {
             Toast.makeText(getApplicationContext(), " Não foi possível encontrar o evento " + eventTitle + ".", Toast.LENGTH_SHORT).show();

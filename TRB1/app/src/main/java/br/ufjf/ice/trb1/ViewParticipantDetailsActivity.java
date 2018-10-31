@@ -16,6 +16,7 @@ public class ViewParticipantDetailsActivity extends AppCompatActivity {
     private TextView name;
     private TextView mail;
     private TextView id;
+
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
