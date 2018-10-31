@@ -11,7 +11,7 @@ public class Event {
         return subscribed;
     }
 
-    private Event(String eventTitle, int day, int hour, int facilitator){
+    public Event(String eventTitle, int day, int hour, String facilitator){
         setEventTitle(eventTitle);
         setDay(day);
         setHour(hour);
@@ -21,7 +21,7 @@ public class Event {
     private String eventTitle;
     private int day;
     private int hour;
-    private int facilitator;
+    private String facilitator;
 
     public int getTextDescription() {
         return textDescription;
@@ -57,11 +57,12 @@ public class Event {
         this.hour = hour;
     }
 
-    public int getFacilitator() {
+    public String getFacilitator() {
         return facilitator;
     }
 
-    public void setFacilitator(int facilitator) {
+    public void setFacilitator(String facilitator) {
         this.facilitator = facilitator;
     }
 }
+
