@@ -7,18 +7,12 @@ public class Participant {
     private String name;
     private String mail;
     private String id;
+    private static ArrayList<Event> events  = new ArrayList<>();
 
     public Participant(String name, String mail, String id){
         setName(name);
         setMail(mail);
         setId(id);
-    }
-
-    private static ArrayList<Event> events;
-
-    public static ArrayList<Event> getSubscribed(){
-        if(events == null) events = new ArrayList<>();
-        return events;
     }
 
     public String getId() {
@@ -45,5 +39,22 @@ public class Participant {
         this.mail = mail;
     }
 
+    public static ArrayList<Event> getEvents() {
+        return events;
+    }
+
+    public void addEvent(Event event) {
+        Event toSearch = this.searchFor(event.getEventTitle());
+        if(toSearch == null)
+            Participant.events.add(event);
+    }
+
+    public Event searchFor(String title){
+        for (Event e: this.getEvents()) {
+            if(e.getEventTitle().equalsIgnoreCase(title))
+                return e;
+        }
+        return null;
+    }
 
 }
