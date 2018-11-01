@@ -23,9 +23,9 @@ public class Event {
         setTextDescription(textDescription);
     }
 
-
     public void addParticipant(Participant participant) {
         Participant toSearch = this.searchFor(participant.getName());
+
         if(toSearch == null)
             this.getParticipants().add(participant);
     }
@@ -76,6 +76,13 @@ public class Event {
 
     public void setFacilitator(String facilitator) {
         this.facilitator = facilitator;
+    }
+
+    public void removeParticipant(Participant participant) {
+        for (Participant p: participants){
+            if(p.getId().equalsIgnoreCase(participant.getId()))
+                participants.remove(p);
+        }
     }
 }
 

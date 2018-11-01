@@ -42,14 +42,18 @@ public class ShowNonSubscribedEventsAdapter extends RecyclerView.Adapter<ShowNon
 
     @Override
     public void onBindViewHolder(@NonNull final ShowNonSubscribedEventsAdapter.ShowNonSubscribedEventsViewHolder viewHolder, final int i) {
-        final Event currentEvent = eventsList.get(i);
+        Event currentEvent = eventsList.get(i);
 
         viewHolder.eventTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Event currentEvent = eventsList.get(i);
+
                 participant.getEvents().add(currentEvent);
+
                 Events.getInstance().searchFor(currentEvent.getEventTitle()).addParticipant(participant);
-                Toast.makeText(v.getContext(), " Evento adicionado! " +  ".", Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(v.getContext(), "Evento adicionado!", Toast.LENGTH_SHORT).show();
 
             }
         });

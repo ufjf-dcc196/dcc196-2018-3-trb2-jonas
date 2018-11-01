@@ -32,6 +32,12 @@ public class Events {
         return allEvents;
     }
 
+    public void addEvent(Event event){
+        if(searchFor(event.getEventTitle()) == null)
+            getAllEvents().add(event);
+    }
+
+
     public void setAllEvents(ArrayList<Event> allEvents) {
         this.allEvents = allEvents;
     }

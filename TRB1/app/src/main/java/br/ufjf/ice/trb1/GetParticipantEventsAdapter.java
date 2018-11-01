@@ -7,14 +7,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import model.Event;
+import model.Events;
+import model.Participant;
 
 public class GetParticipantEventsAdapter extends RecyclerView.Adapter<GetParticipantEventsAdapter.GetParticipantEventsViewHolder>{
 
     private ArrayList<Event> eventList;
+    private Participant participant;
 
     public static class GetParticipantEventsViewHolder extends RecyclerView.ViewHolder{
         public TextView eventTitle;
@@ -26,8 +30,9 @@ public class GetParticipantEventsAdapter extends RecyclerView.Adapter<GetPartici
         }
     }
 
-    public GetParticipantEventsAdapter(ArrayList<Event> events){
+    public GetParticipantEventsAdapter(ArrayList<Event> events, Participant participant){
         eventList = events;
+        this.participant = participant;
     }
 
     @NonNull
@@ -39,7 +44,17 @@ public class GetParticipantEventsAdapter extends RecyclerView.Adapter<GetPartici
 
     @Override
     public void onBindViewHolder(@NonNull GetParticipantEventsAdapter.GetParticipantEventsViewHolder viewHolder, final int i) {
-        Event currentEvent = eventList.get(i);
+        final Event currentEvent = eventList.get(i);
+
+        viewHolder.eventTitle.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                participant.getEvents().remove(currentEvent);
+                Events.getInstance().searchFor(currentEvent.getEventTitle()).removeParticipant(participant);
+                Toast.makeText(v.getContext(), "Evento removido!", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
 
         viewHolder.eventTitle.setText(currentEvent.getEventTitle());
     }
