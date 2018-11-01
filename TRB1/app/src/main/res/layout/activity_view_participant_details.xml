@@ -130,7 +130,7 @@
         app:layout_constraintVertical_bias="0.786" />
 
     <Button
-        android:id="@+id/subscribe_on_event_action"
+        android:id="@+id/add_event_to_participant_action"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_margin="5dp"

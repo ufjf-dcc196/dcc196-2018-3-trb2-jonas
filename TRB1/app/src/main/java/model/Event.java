@@ -9,7 +9,11 @@ public class Event {
     private int hour;
     private String facilitator;
     private String textDescription;
-    private static ArrayList<Participant> subscribed = new ArrayList<>();;
+    private ArrayList<Participant> participants = new ArrayList<>();
+
+    public ArrayList<Participant> getParticipants() {
+        return participants;
+    }
 
     public Event(String eventTitle, int day, int hour, String facilitator, String textDescription){
         setEventTitle(eventTitle);
@@ -19,14 +23,11 @@ public class Event {
         setTextDescription(textDescription);
     }
 
-    public static ArrayList<Participant> getParticipants() {
-        return subscribed;
-    }
 
     public void addParticipant(Participant participant) {
         Participant toSearch = this.searchFor(participant.getName());
         if(toSearch == null)
-            Event.subscribed.add(participant);
+            this.getParticipants().add(participant);
     }
 
     public Participant searchFor(String name){
@@ -35,19 +36,6 @@ public class Event {
                 return p;
         }
         return null;
-    }
-
-    public ArrayList<Participant> getNotCurrentSubscribed( ArrayList<Participant> eventList) {
-        ArrayList<Participant> currentNotSubscribed = new ArrayList<>();
-
-        for (Participant p: subscribed) {
-            for (Participant q: eventList){
-                if(!p.getId().equals(q.getId()))
-                    currentNotSubscribed.add(q);
-            }
-        }
-
-        return currentNotSubscribed;
     }
 
     public String getTextDescription() {

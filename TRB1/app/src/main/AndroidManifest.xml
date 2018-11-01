@@ -19,7 +19,6 @@
         <activity android:name=".ViewParticipantDetailsActivity" />
         <activity android:name=".ViewEventDetailsActivity" />
         <activity android:name=".EditParticipantActivity" />
-        <activity android:name=".AddParticipantToEventActivity" />
         <activity android:name=".GetAllEvents" />
         <activity android:name=".AddEventToParticipant" />
         <activity android:name=".EditEventActivity" />
