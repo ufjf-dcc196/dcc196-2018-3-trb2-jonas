@@ -23,7 +23,7 @@ public class GetEventParticipantsAdapter extends RecyclerView.Adapter<GetEventPa
         public GetEventParticipantsViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            participantName = itemView.findViewById(R.id.e_participant_title_cv);
+            participantName = itemView.findViewById(R.id.e_participant_name_cv);
         }
     }
 

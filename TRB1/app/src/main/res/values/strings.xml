@@ -29,7 +29,8 @@
     <string name="add_participant_action">Adicionar Participante</string>
     <string name="name_hint">Preencha com seu nome completo</string>
     <string name="edit_participant_title">Editar Dados do Participante</string>
-    <string name="subscribe_on_event_title">Inscreva o participante em um evento</string>
+    <string name="add_event_to_participant">Inscreva o participante em um evento</string>
+    <string name="add_participant_to_event">Inscreva no evento um participante</string>
     <string name="save_modifications_action">Salvar mudanças</string>
     <string name="edit_event_title">Editar Dados do Evento</string>
     <string name="select_to_register">Selecione o que deseja cadastrar</string>

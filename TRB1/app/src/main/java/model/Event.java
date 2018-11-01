@@ -37,6 +37,19 @@ public class Event {
         return null;
     }
 
+    public ArrayList<Participant> getNotCurrentSubscribed( ArrayList<Participant> eventList) {
+        ArrayList<Participant> currentNotSubscribed = new ArrayList<>();
+
+        for (Participant p: subscribed) {
+            for (Participant q: eventList){
+                if(!p.getId().equals(q.getId()))
+                    currentNotSubscribed.add(q);
+            }
+        }
+
+        return currentNotSubscribed;
+    }
+
     public String getTextDescription() {
         return textDescription;
     }
