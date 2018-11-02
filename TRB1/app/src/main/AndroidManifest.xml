@@ -21,7 +21,6 @@
         <activity android:name=".EditParticipantActivity" />
         <activity android:name=".GetAllEvents" />
         <activity android:name=".AddEventToParticipant" />
-        <activity android:name=".EditEventActivity" />
     </application>
 
 </manifest>

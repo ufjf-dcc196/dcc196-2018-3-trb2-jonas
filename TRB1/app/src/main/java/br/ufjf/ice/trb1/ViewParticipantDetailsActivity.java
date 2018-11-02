@@ -19,6 +19,7 @@ public class ViewParticipantDetailsActivity extends AppCompatActivity {
     private TextView mail;
     private TextView id;
     private Button subscribe;
+    private Button edit;
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -40,6 +41,7 @@ public class ViewParticipantDetailsActivity extends AppCompatActivity {
             name = findViewById(R.id.p_name_details);
             mail = findViewById(R.id.p_mail_details);
             id = findViewById(R.id.p_id_details);
+            edit = findViewById(R.id.edit_participant);
 
             name.setText(result.getName());
             mail.setText(result.getMail());
@@ -57,8 +59,20 @@ public class ViewParticipantDetailsActivity extends AppCompatActivity {
             subscribe.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), AddEventToParticipant.class);
-                    intent.putExtra("NAME", result.getName());
+                Intent intent = new Intent(v.getContext(), AddEventToParticipant.class);
+                intent.putExtra("NAME", result.getName());
+                v.getContext().startActivity(intent);
+                finish();
+                }
+            });
+
+            edit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), EditParticipantActivity.class);
+                    intent.putExtra("P_NAME", result.getName());
+                    intent.putExtra("P_MAIL", result.getMail());
+                    intent.putExtra("P_ID", result.getId());
                     v.getContext().startActivity(intent);
                     finish();
                 }
