@@ -1,5 +1,6 @@
 package br.ufjf.ice.trb1;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -59,6 +60,10 @@ public class EditParticipantActivity extends AppCompatActivity {
                     Participants.getInstance().getAllParticipants().add(modified);
 
                     Toast.makeText(v.getContext(), newName + " modificado com sucesso!", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(v.getContext(), MainActivity.class);
+                    v.getContext().startActivity(intent);
+                    finish();
                 }
             }
         });

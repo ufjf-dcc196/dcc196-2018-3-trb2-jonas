@@ -1,5 +1,6 @@
 package br.ufjf.ice.trb1;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -75,6 +76,8 @@ public class ViewParticipantDetailsActivity extends AppCompatActivity {
                     intent.putExtra("P_ID", result.getId());
                     v.getContext().startActivity(intent);
                     finish();
+                    ((Activity) v.getContext()).finish();
+
                 }
             });
         } else {
