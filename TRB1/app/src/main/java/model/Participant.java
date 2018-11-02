@@ -58,16 +58,30 @@ public class Participant {
     }
 
     public ArrayList<Event> getNotCurrentSubscribed( ArrayList<Event> eventList) {
-        ArrayList<Event> currentNotSubscribed = new ArrayList<>();
+        ArrayList<Event> notSubscribed = new ArrayList<>();
 
-        for (Event p: events) {
-            for (Event q: eventList){
-                if(!p.getEventTitle().equals(q.getEventTitle()))
-                    currentNotSubscribed.add(q);
+        ArrayList<String> availableEvents = new ArrayList<>();
+
+        for (Event available: eventList) {
+            availableEvents.add(available.getEventTitle());
+        }
+
+        ArrayList<String> subscribedEvents = new ArrayList<>();
+
+        for (Event subscribed: this.getEvents()) {
+            subscribedEvents.add(subscribed.getEventTitle());
+        }
+
+        availableEvents.removeAll(subscribedEvents);
+
+        for (String event : availableEvents) {
+            for (Event e: eventList) {
+                if(e.getEventTitle().equalsIgnoreCase(event))
+                    notSubscribed.add(e);
             }
         }
 
-        return currentNotSubscribed;
+        return notSubscribed;
     }
 
 }
