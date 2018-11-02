@@ -60,7 +60,7 @@ public class ViewParticipantDetailsActivity extends AppCompatActivity {
             subscribe.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), AddEventToParticipant.class);
+                Intent intent = new Intent(v.getContext(), AddEventToParticipantActivity.class);
                 intent.putExtra("NAME", result.getName());
                 v.getContext().startActivity(intent);
                 finish();

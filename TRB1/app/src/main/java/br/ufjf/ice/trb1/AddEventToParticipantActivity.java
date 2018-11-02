@@ -12,7 +12,7 @@ import model.Events;
 import model.Participant;
 import model.Participants;
 
-public class AddEventToParticipant extends AppCompatActivity {
+public class AddEventToParticipantActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
