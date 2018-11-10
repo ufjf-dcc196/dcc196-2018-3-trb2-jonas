@@ -14,7 +14,7 @@ import model.Events;
 public class GetAllEventsFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
+    public RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
 
     @Override

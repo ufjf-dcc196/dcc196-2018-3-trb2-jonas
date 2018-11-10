@@ -68,4 +68,10 @@ public class EditParticipantActivity extends AppCompatActivity {
             }
         });
     }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        GetAllParticipantsFragment.getAdapter().notifyDataSetChanged();
+    }
 }

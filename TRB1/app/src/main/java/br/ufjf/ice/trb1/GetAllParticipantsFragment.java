@@ -12,9 +12,13 @@ import android.view.ViewGroup;
 import model.Participants;
 
 public class GetAllParticipantsFragment extends Fragment {
+    private static RecyclerView.Adapter adapter;
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
+
+    public static RecyclerView.Adapter getAdapter() {
+        return adapter;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
