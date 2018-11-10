@@ -53,11 +53,10 @@ public class EditParticipantActivity extends AppCompatActivity {
                 else if(newId == null || newId.isEmpty())
                     Toast.makeText(v.getContext(), "Insira um CPF válido!", Toast.LENGTH_SHORT).show();
                 else{
-                    Participant modified = new Participant(newName, newMail, newId);
-                    Participant toRemove = Participants.getInstance().searchFor(nameContent);
-
-                    Participants.getInstance().getAllParticipants().remove(toRemove);
-                    Participants.getInstance().getAllParticipants().add(modified);
+                    Participant toEdit = Participants.getInstance().searchFor(nameContent);
+                    toEdit.setId(newId);
+                    toEdit.setName(newName);
+                    toEdit.setMail(newMail);
 
                     Toast.makeText(v.getContext(), newName + " modificado com sucesso!", Toast.LENGTH_SHORT).show();
 
@@ -73,5 +72,6 @@ public class EditParticipantActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         GetAllParticipantsFragment.getAdapter().notifyDataSetChanged();
+        ViewEventDetailsActivity.getAdapter().notifyDataSetChanged();
     }
 }

@@ -11,10 +11,7 @@ public class Events {
     private Events(){
        setAllEvents(new ArrayList<Event>());
 
-        Event event = new Event("Android Hell: Small-talking development", 1, 14, "John", "Not your common college lecture!");
-        event.addParticipant(new Participant("Harry Potter", "hp@hogwarts.castle","123456780"));
-
-        allEvents.add(event);
+        allEvents.add(new Event("Android Hell: Small-talking development", 1, 14, "John", "Not your common college lecture!"));
         allEvents.add(new Event("Real Mobile: Begin with React Native", 2, 14, "Arya", "Not your common college lecture!"));
         allEvents.add(new Event("Creating RESTful APIs", 3, 14, "Eddard", "Not your common college lecture!"));
         allEvents.add(new Event("DevOps on Real World", 1, 16, "Robb", "Not your common college lecture!"));

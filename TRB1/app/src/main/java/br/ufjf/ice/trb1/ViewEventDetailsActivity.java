@@ -23,8 +23,12 @@ public class ViewEventDetailsActivity extends AppCompatActivity {
 
 
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
+    private static RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
+
+    public static RecyclerView.Adapter getAdapter() {
+        return adapter;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

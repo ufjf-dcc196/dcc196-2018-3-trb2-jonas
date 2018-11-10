@@ -10,11 +10,7 @@ public class Participants {
 
     private Participants(){
         setAllParticipants(new ArrayList<Participant>());
-
-        Participant hp = new Participant("Harry Potter", "hp@hogwarts.castle","123456780");
-        hp.addEvent(new Event("Android Hell: Small-talking development", 1, 14, "John", "Not your common college lecture!"));
-
-        allParticipants.add(hp);
+        allParticipants.add(new Participant("Harry Potter", "hp@hogwarts.castle","123456780"));
         allParticipants.add( new Participant("Hermione Granger", "hermione.granger@hogwarts.castle","123456781"));
         allParticipants.add(new Participant("Albus Dumbledore", "theboss@hogwarts.castle","123456782"));
         allParticipants.add(new Participant("Draco Malfoy", "malfoydrake@hogwarts.castle","123456783"));
