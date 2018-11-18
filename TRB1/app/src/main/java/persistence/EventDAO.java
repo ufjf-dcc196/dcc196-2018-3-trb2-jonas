@@ -46,7 +46,7 @@ public class EventDAO {
 
         return event;
     }
-    
+
     public static ArrayList<Event> getAll() {
         ArrayList<Event> events = new ArrayList<>();
 
