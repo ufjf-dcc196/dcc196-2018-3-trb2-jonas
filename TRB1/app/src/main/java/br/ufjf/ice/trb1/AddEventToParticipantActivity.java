@@ -4,9 +4,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
+import java.util.ArrayList;
 import model.Participant;
+import model.Event;
 import persistence.ParticipantDAO;
+import persistence.ParticipantEventDAO;
 
 public class AddEventToParticipantActivity extends AppCompatActivity {
 
@@ -24,11 +26,11 @@ public class AddEventToParticipantActivity extends AppCompatActivity {
 
         Participant selectedParticipant = ParticipantDAO.read(participantName);
 
-        // ArrayList<Event> currentNotSubscribedEvents = selectedParticipant.getNotCurrentSubscribed(Events.getInstance().getAllEvents());
+        ArrayList<Event> currentNotSubscribedEvents = ParticipantEventDAO.getOtherEvents(selectedParticipant.getId());
 
         recyclerView = findViewById(R.id.non_subscribed_events_rv);
         layoutManager = new LinearLayoutManager(this);
-        // adapter = new ShowNonSubscribedEventsAdapter(currentNotSubscribedEvents, selectedParticipant);
+        adapter = new ShowNonSubscribedEventsAdapter(currentNotSubscribedEvents, selectedParticipant);
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);

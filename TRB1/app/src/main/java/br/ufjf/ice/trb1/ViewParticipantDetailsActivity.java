@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import model.Participant;
 import persistence.ParticipantDAO;
+import persistence.ParticipantEventDAO;
 
 public class ViewParticipantDetailsActivity extends AppCompatActivity {
     private TextView name;
@@ -51,10 +52,12 @@ public class ViewParticipantDetailsActivity extends AppCompatActivity {
 
             recyclerView = findViewById(R.id.p_events_rv);
             layoutManager = new LinearLayoutManager(this);
-            //adapter = new GetParticipantEventsAdapter(result.getEvents(), result);
+
+            ParticipantEventDAO participantEventDAO = new ParticipantEventDAO(this);
+            adapter = new GetParticipantEventsAdapter(participantEventDAO.getEvents(this, result.getId()), result);
 
             recyclerView.setLayoutManager(layoutManager);
-            //recyclerView.setAdapter(adapter);
+            recyclerView.setAdapter(adapter);
 
             subscribe.setOnClickListener(new View.OnClickListener() {
                 @Override

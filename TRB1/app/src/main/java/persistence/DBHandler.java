@@ -25,7 +25,7 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String COLUMN_DESCRIPTION = "description";
 
     private static final String TABLE_PARTICIPANT_EVENT = "participant_event";
-    private static final String COLUMN_DATE = "date";
+    private static final String COLUMN_PARTICIPANT_EVENT_ID = "participant_event_id";
 
     public DBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -73,13 +73,20 @@ public class DBHandler extends SQLiteOpenHelper {
                 "('Creating RESTful APIs','3','14','Eddard', 'Not your common college lecture!')");
 
         String create_participant_event_table = "CREATE TABLE " + TABLE_PARTICIPANT_EVENT + "(" +
+                COLUMN_PARTICIPANT_EVENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_PARTICIPANT_ID + " INTEGER, " +
-                COLUMN_EVENT_ID + " INTEGER, " +
-                COLUMN_DATE + " TEXT " +
+                COLUMN_EVENT_ID + " INTEGER " +
                 ");";
 
         db.execSQL(create_participant_event_table);
 
+        db.execSQL("INSERT INTO " + TABLE_PARTICIPANT_EVENT + "( " +
+                COLUMN_PARTICIPANT_ID + "," +
+                COLUMN_EVENT_ID +
+                ") values ('1','1')," +
+                "('1','2')," +
+                "('2','1')," +
+                "('2','3')");
     }
 
     @Override

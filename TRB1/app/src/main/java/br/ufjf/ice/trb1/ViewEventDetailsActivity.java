@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import model.Event;
 import persistence.EventDAO;
+import persistence.ParticipantEventDAO;
 
 public class ViewEventDetailsActivity extends AppCompatActivity {
 
@@ -53,10 +54,12 @@ public class ViewEventDetailsActivity extends AppCompatActivity {
 
             recyclerView = findViewById(R.id.e_participants_rv);
             layoutManager = new LinearLayoutManager(this);
-            //adapter = new GetEventParticipantsAdapter(result.getParZticipants());
+
+            ParticipantEventDAO participantEventDAO = new ParticipantEventDAO(this);
+            adapter = new GetEventParticipantsAdapter(participantEventDAO.getParticipants(this, result.getId()));
 
             recyclerView.setLayoutManager(layoutManager);
-            //recyclerView.setAdapter(adapter);
+            recyclerView.setAdapter(adapter);
 
         } else {
             Toast.makeText(getApplicationContext(), " Não foi possível encontrar o evento " + eventTitle + ".", Toast.LENGTH_SHORT).show();

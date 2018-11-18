@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import java.util.ArrayList;
 import model.Event;
+import model.Participant;
 
 public class EventDAO {
 
@@ -26,13 +27,13 @@ public class EventDAO {
     }
 
     public static Event read(String eventTitle) {
-        Event event = null;
+        Event event;
 
         String getAllQuery = "SELECT * FROM " + TABLE_EVENTS + " WHERE title LIKE '%" + eventTitle + "%'";
 
         Cursor cursor = gw.getDatabase().rawQuery(getAllQuery, null);
 
-        while (cursor.moveToFirst()){
+        if (cursor.moveToFirst()){
             int id = cursor.getInt(cursor.getColumnIndex("event_id"));
             String title = cursor.getString(cursor.getColumnIndex("title"));
             String day = cursor.getString(cursor.getColumnIndex("day"));
@@ -40,11 +41,11 @@ public class EventDAO {
             String facilitator = cursor.getString(cursor.getColumnIndex("facilitator"));
             String description = cursor.getString(cursor.getColumnIndex("description"));
             event = new Event(id, title, Integer.parseInt(day), Integer.parseInt(hour), facilitator, description);
+            cursor.close();
+            return event;
         }
 
-        cursor.close();
-
-        return event;
+        return null;
     }
 
     public static ArrayList<Event> getAll() {
@@ -91,6 +92,25 @@ public class EventDAO {
         return null;
     }
 
+    public static Event read(int id) {
+        Event event = null;
+
+        String getAllQuery = "SELECT * FROM " + TABLE_EVENTS + " WHERE event_id =" + id;
+
+        Cursor cursor = gw.getDatabase().rawQuery(getAllQuery, null);
+
+        if (cursor.moveToFirst()){
+            String title = cursor.getString(cursor.getColumnIndex("title"));
+            String day = cursor.getString(cursor.getColumnIndex("day"));
+            String hour = cursor.getString(cursor.getColumnIndex("hour"));
+            String facilitator = cursor.getString(cursor.getColumnIndex("facilitator"));
+            String description = cursor.getString(cursor.getColumnIndex("description"));
+            event = new Event(id, title, Integer.parseInt(day), Integer.parseInt(hour), facilitator, description);
+
+            cursor.close();
+        }
 
 
+        return event;
+    }
 }

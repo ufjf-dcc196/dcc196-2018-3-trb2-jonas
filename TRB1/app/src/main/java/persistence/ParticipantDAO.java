@@ -24,23 +24,25 @@ public class ParticipantDAO {
     }
 
     public static Participant read(String participantName) {
-        Participant participant = null;
+        Participant participant;
 
         String getAllQuery = "SELECT * FROM " + TABLE_PARTICIPANTS + " WHERE name LIKE '%" + participantName + "%'";
 
         Cursor cursor = gw.getDatabase().rawQuery(getAllQuery, null);
 
-        while (cursor.moveToFirst()){
+        if (cursor.moveToFirst()){
             int id = cursor.getInt(cursor.getColumnIndex("participant_id"));
             String register_number = cursor.getString(cursor.getColumnIndex("register_number"));
             String name = cursor.getString(cursor.getColumnIndex("name"));
             String mail = cursor.getString(cursor.getColumnIndex("mail"));
             participant = new Participant(id, register_number, name, mail);
+
+            cursor.close();
+
+            return participant;
         }
 
-        cursor.close();
-
-        return participant;
+        return null;
     }
 
     public static boolean update(int id, String registerNumber, String name, String mail) {
@@ -56,16 +58,15 @@ public class ParticipantDAO {
     }
 
     public static int getId(String name){
-        int id = 0;
+        int id = -1;
         String getAllQuery = "SELECT id FROM " + TABLE_PARTICIPANTS + " WHERE name LIKE '%" + name + "%'";
 
         Cursor cursor = gw.getDatabase().rawQuery(getAllQuery, null);
 
-        while (cursor.moveToFirst()){
+        if (cursor.moveToFirst()){
             id = cursor.getInt(cursor.getColumnIndex("participant_id"));
+            cursor.close();
         }
-
-        cursor.close();
 
         return id;
     }
@@ -109,4 +110,23 @@ public class ParticipantDAO {
         return null;
     }
 
+    public static Participant read(int id) {
+        Participant participant = null;
+
+        String getAllQuery = "SELECT * FROM " + TABLE_PARTICIPANTS + " WHERE participant_id =" + id;
+
+        Cursor cursor = gw.getDatabase().rawQuery(getAllQuery, null);
+
+        while (cursor.moveToFirst()){
+            String register_number = cursor.getString(cursor.getColumnIndex("register_number"));
+            String name = cursor.getString(cursor.getColumnIndex("name"));
+            String mail = cursor.getString(cursor.getColumnIndex("mail"));
+            participant = new Participant(id, register_number, name, mail);
+        }
+
+        cursor.close();
+
+        return participant;
+
+    }
 }
