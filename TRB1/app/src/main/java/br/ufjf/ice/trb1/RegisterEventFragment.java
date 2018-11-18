@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import model.Event;
+import utils.NotificationService;
 
 public class RegisterEventFragment extends Fragment {
     private TextView eTitle;
@@ -42,16 +43,9 @@ public class RegisterEventFragment extends Fragment {
                 String facilitator = eFacilitator.getText().toString();
                 String description = eDescription.getText().toString();
 
-                if(title == null || title.isEmpty())
-                    Toast.makeText(v.getContext(), "Insira um título de evento válido!", Toast.LENGTH_SHORT).show();
-                else if(day == null || day.isEmpty())
-                    Toast.makeText(v.getContext(), "Insira um dia válido!", Toast.LENGTH_SHORT).show();
-                else if(hour == null || hour.isEmpty())
-                    Toast.makeText(v.getContext(), "Insira uma hora válida!", Toast.LENGTH_SHORT).show();
-                else if(facilitator == null || facilitator.isEmpty())
-                    Toast.makeText(v.getContext(), "Insira um facilitador válido!", Toast.LENGTH_SHORT).show();
-                else if(description == null || description.isEmpty())
-                    Toast.makeText(v.getContext(), "Insira uma descrição válida!", Toast.LENGTH_SHORT).show();
+                if(isValidEvent(v, title, day,hour, facilitator, description)){
+
+                }
                 else{
                     Event e = new Event(title, Integer.parseInt(day), Integer.parseInt(hour), facilitator, description);
                     //if(Events.getInstance().searchFor(title) == null)
@@ -59,6 +53,20 @@ public class RegisterEventFragment extends Fragment {
 
                     Toast.makeText(v.getContext(), title + " cadastrado!", Toast.LENGTH_SHORT).show();
                 }
+            }
+
+            private boolean isValidEvent(View v,String title, String day, String hour, String facilitator, String description) {
+                if(title == null || title.isEmpty())
+                    NotificationService.sendToast(v, "Insira um título de evento válido!");
+                else if(day == null || day.isEmpty())
+                    NotificationService.sendToast(v, "Insira um dia válido!");
+                else if(hour == null || hour.isEmpty())
+                    NotificationService.sendToast(v, "Insira uma hora válida!");
+                else if(facilitator == null || facilitator.isEmpty())
+                    NotificationService.sendToast(v, "Insira um facilitador válido!");
+                else if(description == null || description.isEmpty())
+                    NotificationService.sendToast(v, "Insira uma descrição válida!");
+                return true;
             }
         });
         return rootView;

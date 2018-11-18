@@ -10,7 +10,7 @@ import model.Participant;
 
 public class ParticipantDAO {
 
-    private static final String TABLE_PARTICIPANTS = "participants.db";
+    private static final String TABLE_PARTICIPANTS = "participants";
     private static DBGateway gw;
 
     public ParticipantDAO(Context ctx){
@@ -93,21 +93,22 @@ public class ParticipantDAO {
     public static Participant getLast() {
         Participant participant = null;
 
-        String getAllQuery = "SELECT * FROM " + TABLE_PARTICIPANTS + " ORDER BY ID DESC";
+        String getAllQuery = "SELECT * FROM " + TABLE_PARTICIPANTS + " ORDER BY participant_id DESC";
 
         Cursor cursor = gw.getDatabase().rawQuery(getAllQuery, null);
 
-        while (cursor.moveToFirst()){
+        if (cursor.moveToFirst()){
             int id = cursor.getInt(cursor.getColumnIndex("participant_id"));
             String register_number = cursor.getString(cursor.getColumnIndex("register_number"));
             String name = cursor.getString(cursor.getColumnIndex("name"));
             String mail = cursor.getString(cursor.getColumnIndex("mail"));
             participant = new Participant(id, register_number, name, mail);
+            cursor.close();
+
+            return participant;
         }
 
-        cursor.close();
-
-        return participant;
+        return null;
     }
 
 }

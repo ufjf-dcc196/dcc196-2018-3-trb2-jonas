@@ -13,9 +13,9 @@ public class DBGateway {
         db = helper.getWritableDatabase();
     }
 
-    public static DBGateway getInstance(Context ctx){
+    public static DBGateway getInstance(Context context){
         if(gw == null)
-            gw = new DBGateway(ctx);
+            gw = new DBGateway(context);
         return gw;
     }
 

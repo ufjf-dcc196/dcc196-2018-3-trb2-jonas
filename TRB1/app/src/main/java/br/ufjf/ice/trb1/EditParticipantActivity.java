@@ -54,7 +54,13 @@ public class EditParticipantActivity extends AppCompatActivity {
                 else if(newRegisterNumber == null || newRegisterNumber.isEmpty())
                     NotificationService.sendToast(v, "Insira um CPF válido!");
                 else{
-                    ParticipantDAO.update(ParticipantDAO.getId(nameContent), newName, newRegisterNumber, newMail);
+                    int id = ParticipantDAO.getId(nameContent);
+
+                    ParticipantDAO.update(id, newName, newRegisterNumber, newMail);
+
+                    ((GetAllParticipantsAdapter) GetAllParticipantsFragment.getAdapter()).updateParticipant(
+                            new Participant(id, newName, newRegisterNumber, newMail)
+                    );
 
                     NotificationService.sendToast(v, newName + " modificado com sucesso!");
 

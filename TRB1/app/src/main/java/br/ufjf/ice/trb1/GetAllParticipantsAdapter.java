@@ -57,6 +57,12 @@ public class GetAllParticipantsAdapter extends RecyclerView.Adapter<GetAllPartic
         return this.participants.size();
     }
 
+    public void updateParticipant(Participant participant){
+        int position = participants.indexOf(participant);
+        this.participants.set(position, participant);
+        notifyItemChanged(position);
+    }
+
     public void addParticipant(Participant participant){
         this.participants.add(participant);
         notifyItemInserted(getItemCount());

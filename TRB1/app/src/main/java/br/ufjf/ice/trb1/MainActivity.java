@@ -9,12 +9,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import persistence.DBHandler;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        this.deleteDatabase(DBHandler.DATABASE_NAME);
+
 
         BottomNavigationView nav = findViewById(R.id.bottomNavigationView);
 

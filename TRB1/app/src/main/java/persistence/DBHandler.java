@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "events.db";
+    public static final String DATABASE_NAME = "events.db";
 
     private static final String TABLE_PARTICIPANTS = "participants";
     private static final String COLUMN_PARTICIPANT_ID = "participant_id";
@@ -34,28 +34,37 @@ public class DBHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String create_participant_table = "CREATE TABLE " + TABLE_PARTICIPANTS + "(" +
-                COLUMN_PARTICIPANT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT " +
-                COLUMN_REGISTER_NUMBER + " INTEGER " +
-                COLUMN_NAME + " TEXT " +
+                COLUMN_PARTICIPANT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_REGISTER_NUMBER + " INTEGER, " +
+                COLUMN_NAME + " TEXT, " +
                 COLUMN_MAIL + " TEXT" +
                 ");";
 
         db.execSQL(create_participant_table);
 
+        db.execSQL("INSERT INTO " + TABLE_PARTICIPANTS + "( " +
+                COLUMN_REGISTER_NUMBER + "," +
+                COLUMN_NAME + "," +
+                COLUMN_MAIL +
+                ") values ('330','Alvus Dumbledore','ad@hogwarts.com')," +
+                "('331','Harry Potter','hp@hogwarts.com')," +
+                "('332','Hermione Granger','hg@hogwarts.com')," +
+                "('333','Sirius Black','sb@hogwarts.com')");
+
         String create_event_table = "CREATE TABLE " + TABLE_EVENTS + "(" +
-                COLUMN_EVENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT " +
-                COLUMN_TITLE + " TEXT " +
-                COLUMN_DAY + " INTEGER " +
-                COLUMN_HOUR + " INTEGER " +
-                COLUMN_FACILITATOR + " TEXT" +
+                COLUMN_EVENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_TITLE + " TEXT, " +
+                COLUMN_DAY + " INTEGER, " +
+                COLUMN_HOUR + " INTEGER, " +
+                COLUMN_FACILITATOR + " TEXT, " +
                 COLUMN_DESCRIPTION + " TEXT" +
                 ");";
 
         db.execSQL(create_event_table);
 
         String create_participant_event_table = "CREATE TABLE " + TABLE_PARTICIPANT_EVENT + "(" +
-                COLUMN_PARTICIPANT_ID + " INTEGER " +
-                COLUMN_EVENT_ID + " INTEGER " +
+                COLUMN_PARTICIPANT_ID + " INTEGER, " +
+                COLUMN_EVENT_ID + " INTEGER, " +
                 COLUMN_DATE + " TEXT " +
                 ");";
 

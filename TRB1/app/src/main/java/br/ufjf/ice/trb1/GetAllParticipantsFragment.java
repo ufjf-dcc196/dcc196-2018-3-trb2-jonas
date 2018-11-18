@@ -33,7 +33,9 @@ public class GetAllParticipantsFragment extends Fragment {
 
         recyclerView = rootView.findViewById(R.id.all_events_rv);
         layoutManager = new LinearLayoutManager(getContext());
-        adapter = new GetAllParticipantsAdapter(ParticipantDAO.getAll());
+
+        ParticipantDAO participantDAO = new ParticipantDAO(this.getContext());
+        adapter = new GetAllParticipantsAdapter(participantDAO.getAll());
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);

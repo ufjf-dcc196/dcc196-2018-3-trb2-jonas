@@ -7,7 +7,7 @@ public class Participant {
     private String mail;
     private String registerNumber;
 
-    public Participant(int id, String name, String mail, String registerNumber){
+    public Participant(int id, String registerNumber, String name, String mail){
         setId(id);
         setName(name);
         setMail(mail);
