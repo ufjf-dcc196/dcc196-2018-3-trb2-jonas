@@ -9,7 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import model.Participants;
+
+import persistence.ParticipantDAO;
 
 public class GetAllParticipantsFragment extends Fragment {
     private static RecyclerView.Adapter adapter;
@@ -32,7 +33,7 @@ public class GetAllParticipantsFragment extends Fragment {
 
         recyclerView = rootView.findViewById(R.id.all_events_rv);
         layoutManager = new LinearLayoutManager(getContext());
-        adapter = new GetAllParticipantsAdapter(Participants.getInstance().getAllParticipants());
+        adapter = new GetAllParticipantsAdapter(ParticipantDAO.getAll());
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);

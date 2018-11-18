@@ -5,12 +5,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import java.util.ArrayList;
-
-import model.Event;
-import model.Events;
 import model.Participant;
-import model.Participants;
+import persistence.ParticipantDAO;
 
 public class AddEventToParticipantActivity extends AppCompatActivity {
 
@@ -26,13 +22,13 @@ public class AddEventToParticipantActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         String participantName = extras.getString("NAME");
 
-        Participant selectedParticipant = Participants.getInstance().searchFor(participantName);
+        Participant selectedParticipant = ParticipantDAO.read(participantName);
 
-        ArrayList<Event> currentNotSubscribedEvents = selectedParticipant.getNotCurrentSubscribed(Events.getInstance().getAllEvents());
+        // ArrayList<Event> currentNotSubscribedEvents = selectedParticipant.getNotCurrentSubscribed(Events.getInstance().getAllEvents());
 
         recyclerView = findViewById(R.id.non_subscribed_events_rv);
         layoutManager = new LinearLayoutManager(this);
-        adapter = new ShowNonSubscribedEventsAdapter(currentNotSubscribedEvents, selectedParticipant);
+        // adapter = new ShowNonSubscribedEventsAdapter(currentNotSubscribedEvents, selectedParticipant);
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);

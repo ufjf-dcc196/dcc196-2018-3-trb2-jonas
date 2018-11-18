@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import model.Event;
-import model.Events;
 
 public class RegisterEventFragment extends Fragment {
     private TextView eTitle;
@@ -55,8 +54,8 @@ public class RegisterEventFragment extends Fragment {
                     Toast.makeText(v.getContext(), "Insira uma descrição válida!", Toast.LENGTH_SHORT).show();
                 else{
                     Event e = new Event(title, Integer.parseInt(day), Integer.parseInt(hour), facilitator, description);
-                    if(Events.getInstance().searchFor(title) == null)
-                        Events.getInstance().getAllEvents().add(e);
+                    //if(Events.getInstance().searchFor(title) == null)
+                        //Events.getInstance().getAllEvents().add(e);
 
                     Toast.makeText(v.getContext(), title + " cadastrado!", Toast.LENGTH_SHORT).show();
                 }

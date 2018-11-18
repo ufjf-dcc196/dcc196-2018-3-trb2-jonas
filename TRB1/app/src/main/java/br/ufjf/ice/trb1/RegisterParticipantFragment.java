@@ -12,13 +12,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import model.Participant;
-import model.Participants;
+import persistence.ParticipantDAO;
+import utils.NotificationService;
 
 public class RegisterParticipantFragment extends Fragment {
 
     private TextView pName;
     private TextView pMail;
-    private TextView pId;
+    private TextView pRegisterNumber;
     private Button pRegister;
 
     @Nullable
@@ -28,33 +29,62 @@ public class RegisterParticipantFragment extends Fragment {
 
         pName = rootView.findViewById(R.id.p_add_name);
         pMail = rootView.findViewById(R.id.p_add_mail);
-        pId = rootView.findViewById(R.id.p_add_id);
+        pRegisterNumber = rootView.findViewById(R.id.p_add_register_number);
 
         pRegister = rootView.findViewById(R.id.add_participant_action);
 
         pRegister.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 String nameContent = pName.getText().toString();
                 String mailContent = pMail.getText().toString();
-                String idContent = pId.getText().toString();
+                String registerNumberContent = pRegisterNumber.getText().toString();
 
-                if(nameContent == null || nameContent.isEmpty())
-                    Toast.makeText(v.getContext(), "Insira um nome válido!", Toast.LENGTH_SHORT).show();
-                else if(mailContent == null || mailContent.isEmpty())
-                    Toast.makeText(v.getContext(), "Insira um e-mail válido!", Toast.LENGTH_SHORT).show();
-                else if(idContent == null || idContent.isEmpty())
-                    Toast.makeText(v.getContext(), "Insira um CPF válido!", Toast.LENGTH_SHORT).show();
-                else{
-                    Participant p = new Participant(nameContent, mailContent, idContent);
-                    if(Participants.getInstance().searchFor(nameContent) == null)
-                        Participants.getInstance().getAllParticipants().add(p);
+                if(isParticipantValid(view, nameContent, mailContent, registerNumberContent)){
+                    if(ParticipantDAO.create(registerNumberContent, nameContent, mailContent)){
 
-                    Toast.makeText(v.getContext(), nameContent + " cadastrado!", Toast.LENGTH_SHORT).show();
+                        NotificationService.sendToast(view,  nameContent + " cadastrado!");
+
+                        Participant p = ParticipantDAO.getLast();
+                        ((GetAllParticipantsAdapter) GetAllParticipantsFragment.getAdapter()).addParticipant(p);
+                    }
+                    else {
+                        NotificationService.sendToast(view,  nameContent + "não cadastrado. Erro ao acessar o banco.");
+                    }
+
+                    cleanViews();
+
                 }
+
+            }
+
+            private void cleanViews() {
+                pName.setText("");
+                pMail.setText("");
+                pRegisterNumber.setText("");
             }
         });
 
         return rootView;
+    }
+
+    private boolean isParticipantValid(View v, String nameContent, String mailContent, String registerNumberContent) {
+
+        if(nameContent == null || nameContent.isEmpty()){
+            NotificationService.sendToast(v, "Insira um nome válido!");
+            return false;
+        }
+
+        else if(mailContent == null || mailContent.isEmpty()){
+            NotificationService.sendToast(v, "Insira um e-mail válido!");
+            return false;
+        }
+
+        else if(registerNumberContent == null || registerNumberContent.isEmpty()){
+            NotificationService.sendToast(v, "Insira um CPF válido!");
+            return false;
+        }
+
+        return true;
     }
 }

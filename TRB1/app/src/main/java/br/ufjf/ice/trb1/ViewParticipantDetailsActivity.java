@@ -11,9 +11,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import model.Events;
 import model.Participant;
-import model.Participants;
+import persistence.ParticipantDAO;
 
 public class ViewParticipantDetailsActivity extends AppCompatActivity {
     private TextView name;
@@ -35,27 +34,27 @@ public class ViewParticipantDetailsActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         String participantName = extras.getString("NAME");
 
-        final Participant result = Participants.getInstance().searchFor(participantName);
+        final Participant result = ParticipantDAO.read(participantName);
 
-        if( result != null) {
+        if(result != null) {
 
             name = findViewById(R.id.p_name_details);
             mail = findViewById(R.id.p_mail_details);
-            id = findViewById(R.id.p_id_details);
+            id = findViewById(R.id.p_register_number_details);
             edit = findViewById(R.id.edit_participant);
 
             name.setText(result.getName());
             mail.setText(result.getMail());
-            id.setText(result.getId());
+            id.setText(result.getRegisterNumber());
 
             subscribe = findViewById(R.id.add_event_to_participant_action);
 
             recyclerView = findViewById(R.id.p_events_rv);
             layoutManager = new LinearLayoutManager(this);
-            adapter = new GetParticipantEventsAdapter(result.getEvents(), result);
+            //adapter = new GetParticipantEventsAdapter(result.getEvents(), result);
 
             recyclerView.setLayoutManager(layoutManager);
-            recyclerView.setAdapter(adapter);
+            //recyclerView.setAdapter(adapter);
 
             subscribe.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -73,7 +72,7 @@ public class ViewParticipantDetailsActivity extends AppCompatActivity {
                     Intent intent = new Intent(v.getContext(), EditParticipantActivity.class);
                     intent.putExtra("P_NAME", result.getName());
                     intent.putExtra("P_MAIL", result.getMail());
-                    intent.putExtra("P_ID", result.getId());
+                    intent.putExtra("P_REGISTER_NUMBER", result.getRegisterNumber());
                     v.getContext().startActivity(intent);
                     finish();
                     ((Activity) v.getContext()).finish();

@@ -1,6 +1,5 @@
 package br.ufjf.ice.trb1;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,7 +9,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import model.Event;
 import model.Participant;
 
 public class GetEventParticipantsAdapter extends RecyclerView.Adapter<GetEventParticipantsAdapter.GetEventParticipantsViewHolder>{

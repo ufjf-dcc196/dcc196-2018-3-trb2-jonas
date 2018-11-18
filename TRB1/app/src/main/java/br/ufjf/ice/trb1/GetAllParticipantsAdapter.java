@@ -12,7 +12,7 @@ import model.Participant;
 
 public class GetAllParticipantsAdapter extends RecyclerView.Adapter<GetAllParticipantsAdapter.GetAllParticipantsViewHolder> {
 
-    private ArrayList<Participant> participantsList;
+    private ArrayList<Participant> participants;
 
     public static class GetAllParticipantsViewHolder extends RecyclerView.ViewHolder {
         public TextView participantName;
@@ -26,7 +26,7 @@ public class GetAllParticipantsAdapter extends RecyclerView.Adapter<GetAllPartic
     }
 
     public GetAllParticipantsAdapter(ArrayList<Participant> participants) {
-        participantsList = participants;
+        participants = participants;
     }
 
     @NonNull
@@ -39,14 +39,14 @@ public class GetAllParticipantsAdapter extends RecyclerView.Adapter<GetAllPartic
 
     @Override
     public void onBindViewHolder(@NonNull GetAllParticipantsViewHolder getAllParticipantsViewHolder, final int i) {
-        Participant currentParticipant = participantsList.get(i);
+        Participant currentParticipant = participants.get(i);
         getAllParticipantsViewHolder.participantName.setText(currentParticipant.getName());
 
         getAllParticipantsViewHolder.participantName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), ViewParticipantDetailsActivity.class);
-                intent.putExtra("NAME", participantsList.get(i).getName());
+                intent.putExtra("NAME", participants.get(i).getName());
                 v.getContext().startActivity(intent);
             }
         });
@@ -54,6 +54,11 @@ public class GetAllParticipantsAdapter extends RecyclerView.Adapter<GetAllPartic
 
     @Override
     public int getItemCount() {
-        return participantsList.size();
+        return participants.size();
+    }
+
+    public void addParticipant(Participant participant){
+        participants.add(participant);
+        notifyItemInserted(getItemCount());
     }
 }

@@ -1,6 +1,5 @@
 package br.ufjf.ice.trb1;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,7 +11,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import model.Event;
-import model.Events;
 import model.Participant;
 
 public class GetParticipantEventsAdapter extends RecyclerView.Adapter<GetParticipantEventsAdapter.GetParticipantEventsViewHolder>{
@@ -49,8 +47,8 @@ public class GetParticipantEventsAdapter extends RecyclerView.Adapter<GetPartici
         viewHolder.eventTitle.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                participant.getEvents().remove(currentEvent);
-                Events.getInstance().searchFor(currentEvent.getEventTitle()).removeParticipant(participant);
+                //participant.getEvents().remove(currentEvent);
+                //Events.getInstance().searchFor(currentEvent.getEventTitle()).removeParticipant(participant);
                 Toast.makeText(v.getContext(), "Evento removido!", Toast.LENGTH_SHORT).show();
                 return true;
             }

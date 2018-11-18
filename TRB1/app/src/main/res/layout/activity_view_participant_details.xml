@@ -90,18 +90,18 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
-        android:text="@string/id_lbl"
+        android:text="@string/register_number_lbl"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/p_mail_details" />
 
     <TextView
-        android:id="@+id/p_id_details"
+        android:id="@+id/p_register_number_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="48dp"
-        android:text="@string/participant_id_ph"
+        android:text="@string/participant_register_number_ph"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/p_mail_details" />
@@ -115,7 +115,7 @@
         android:layout_marginTop="28dp"
         android:text="@string/event_list"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/p_id_details" />
+        app:layout_constraintTop_toBottomOf="@+id/p_register_number_details" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/p_events_rv"

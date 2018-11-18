@@ -1,17 +1,13 @@
 package br.ufjf.ice.trb1;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import model.Event;
-import model.Events;
 
 public class ViewEventDetailsActivity extends AppCompatActivity {
 
@@ -39,7 +35,8 @@ public class ViewEventDetailsActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         String eventTitle = extras.getString("TITLE");
 
-        final Event result = Events.getInstance().searchFor(eventTitle);
+        final Event result = null;
+        //Events.getInstance().searchFor(eventTitle)
 
         if(result != null) {
             title = findViewById(R.id.e_event_title_details);
@@ -56,10 +53,10 @@ public class ViewEventDetailsActivity extends AppCompatActivity {
 
             recyclerView = findViewById(R.id.e_participants_rv);
             layoutManager = new LinearLayoutManager(this);
-            adapter = new GetEventParticipantsAdapter(result.getParticipants());
+            //adapter = new GetEventParticipantsAdapter(result.getParticipants());
 
             recyclerView.setLayoutManager(layoutManager);
-            recyclerView.setAdapter(adapter);
+            //recyclerView.setAdapter(adapter);
 
         } else {
             Toast.makeText(getApplicationContext(), " Não foi possível encontrar o evento " + eventTitle + ".", Toast.LENGTH_SHORT).show();

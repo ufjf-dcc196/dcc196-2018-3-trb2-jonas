@@ -11,7 +11,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import model.Event;
-import model.Events;
 import model.Participant;
 
 public class ShowNonSubscribedEventsAdapter extends RecyclerView.Adapter<ShowNonSubscribedEventsAdapter.ShowNonSubscribedEventsViewHolder> {
@@ -49,9 +48,9 @@ public class ShowNonSubscribedEventsAdapter extends RecyclerView.Adapter<ShowNon
             public void onClick(View v) {
                 Event currentEvent = eventsList.get(i);
 
-                participant.getEvents().add(currentEvent);
+                //participant.getEvents().add(currentEvent);
 
-                Events.getInstance().searchFor(currentEvent.getEventTitle()).addParticipant(participant);
+                //Events.getInstance().searchFor(currentEvent.getEventTitle()).addParticipant(participant);
 
                 Toast.makeText(v.getContext(), "Evento adicionado!", Toast.LENGTH_SHORT).show();
 

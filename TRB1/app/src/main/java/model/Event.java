@@ -1,7 +1,5 @@
 package model;
 
-import java.util.ArrayList;
-
 public class Event {
 
     private String eventTitle;
@@ -9,11 +7,6 @@ public class Event {
     private int hour;
     private String facilitator;
     private String textDescription;
-    private ArrayList<Participant> participants = new ArrayList<>();
-
-    public ArrayList<Participant> getParticipants() {
-        return participants;
-    }
 
     public Event(String eventTitle, int day, int hour, String facilitator, String textDescription){
         setEventTitle(eventTitle);
@@ -21,21 +14,6 @@ public class Event {
         setHour(hour);
         setFacilitator(facilitator);
         setTextDescription(textDescription);
-    }
-
-    public void addParticipant(Participant participant) {
-        Participant toSearch = this.searchFor(participant.getName());
-
-        if(toSearch == null)
-            this.getParticipants().add(participant);
-    }
-
-    public Participant searchFor(String name){
-        for (Participant p: this.getParticipants()) {
-            if(p.getName().equalsIgnoreCase(name))
-                return p;
-        }
-        return null;
     }
 
     public String getTextDescription() {
@@ -76,13 +54,6 @@ public class Event {
 
     public void setFacilitator(String facilitator) {
         this.facilitator = facilitator;
-    }
-
-    public void removeParticipant(Participant participant) {
-        for (Participant p: participants){
-            if(p.getId().equalsIgnoreCase(participant.getId()))
-                participants.remove(p);
-        }
     }
 }
 
