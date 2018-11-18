@@ -2,26 +2,36 @@ package model;
 
 public class Event {
 
+    private int id;
     private String eventTitle;
     private int day;
     private int hour;
     private String facilitator;
-    private String textDescription;
+    private String description;
 
-    public Event(String eventTitle, int day, int hour, String facilitator, String textDescription){
+    public Event(int id, String eventTitle, int day, int hour, String facilitator, String description){
+        setId(id);
         setEventTitle(eventTitle);
         setDay(day);
         setHour(hour);
         setFacilitator(facilitator);
-        setTextDescription(textDescription);
+        setDescription(description);
     }
 
-    public String getTextDescription() {
-        return textDescription;
+    public int getId() {
+        return id;
     }
 
-    public void setTextDescription(String textDescription) {
-        this.textDescription = textDescription;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getEventTitle() {

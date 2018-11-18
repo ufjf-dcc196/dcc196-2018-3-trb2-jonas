@@ -62,6 +62,16 @@ public class DBHandler extends SQLiteOpenHelper {
 
         db.execSQL(create_event_table);
 
+        db.execSQL("INSERT INTO " + TABLE_EVENTS + "( " +
+                COLUMN_TITLE + "," +
+                COLUMN_DAY + "," +
+                COLUMN_HOUR + "," +
+                COLUMN_FACILITATOR + "," +
+                COLUMN_DESCRIPTION +
+                ") values ('Android Hell: Small-talking development','1','14','John', 'Not your common college lecture!')," +
+                "('Real Mobile: Begin with React Native','2','14','Arya', 'Not your common college lecture!')," +
+                "('Creating RESTful APIs','3','14','Eddard', 'Not your common college lecture!')");
+
         String create_participant_event_table = "CREATE TABLE " + TABLE_PARTICIPANT_EVENT + "(" +
                 COLUMN_PARTICIPANT_ID + " INTEGER, " +
                 COLUMN_EVENT_ID + " INTEGER, " +

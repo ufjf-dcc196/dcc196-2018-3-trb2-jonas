@@ -12,7 +12,7 @@ import model.Event;
 
 public class GetAllEventsAdapter extends RecyclerView.Adapter<GetAllEventsAdapter.GetAllEventsViewHolder> {
 
-    private ArrayList<Event> eventList;
+    private ArrayList<Event> events;
 
     public static class GetAllEventsViewHolder extends RecyclerView.ViewHolder{
         public TextView eventTitle;
@@ -25,7 +25,7 @@ public class GetAllEventsAdapter extends RecyclerView.Adapter<GetAllEventsAdapte
     }
 
     public GetAllEventsAdapter(ArrayList<Event> events){
-        eventList = events;
+        this.events = events;
     }
 
     @NonNull
@@ -37,13 +37,13 @@ public class GetAllEventsAdapter extends RecyclerView.Adapter<GetAllEventsAdapte
 
     @Override
     public void onBindViewHolder(@NonNull GetAllEventsViewHolder getAllEventsViewHolder, final int i) {
-        Event currentEvent = eventList.get(i);
+        Event currentEvent = this.events.get(i);
 
         getAllEventsViewHolder.eventTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), ViewEventDetailsActivity.class);
-                intent.putExtra("TITLE", eventList.get(i).getEventTitle());
+                intent.putExtra("TITLE", events.get(i).getEventTitle());
                 v.getContext().startActivity(intent);
             }
         });
@@ -53,6 +53,17 @@ public class GetAllEventsAdapter extends RecyclerView.Adapter<GetAllEventsAdapte
 
     @Override
     public int getItemCount() {
-        return eventList.size();
+        return this.events.size();
+    }
+
+    public void updateEvent(Event participant){
+        int position = this.events.indexOf(participant);
+        this.events.set(position, participant);
+        notifyItemChanged(position);
+    }
+
+    public void addEvent(Event participant){
+        this.events.add(participant);
+        notifyItemInserted(getItemCount());
     }
 }

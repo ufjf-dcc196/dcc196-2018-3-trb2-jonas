@@ -3,72 +3,123 @@ package persistence;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-
 import java.util.ArrayList;
-
-import model.Participant;
+import model.Event;
 
 public class EventDAO {
 
-    private static final String TABLE_PARTICIPANTS = "participants.db";
+    private static final String TABLE_EVENTS = "events";
     private static DBGateway gw;
 
     public EventDAO(Context ctx){
         gw = DBGateway.getInstance(ctx);
     }
 
-    public static boolean create(String registerNumber, String name, String mail){
+    public static boolean create(String title, String day, String hour, String facilitator, String description){
         ContentValues cv = new ContentValues();
-        cv.put("name", name);
-        cv.put("register_number", registerNumber);
-        cv.put("mail", mail);
-        return gw.getDatabase().insert(TABLE_PARTICIPANTS, null, cv) > 0;
+        cv.put("title", title);
+        cv.put("day", day);
+        cv.put("hour", hour);
+        cv.put("facilitator", facilitator);
+        cv.put("description", description);
+        return gw.getDatabase().insert(TABLE_EVENTS, null, cv) > 0;
     }
 
-    public static Participant read(String participantName) {
-        return null;
-    }
+    public static Event read(String participantName) {
+        Event participant = null;
 
-    public static boolean update(Participant participant) {
-        return false;
-    }
-
-    public static ArrayList<model.Event> getAll() {
-        ArrayList<model.Event> participants = new ArrayList<>();
-
-        Cursor cursor = gw.getDatabase().rawQuery("SELECT * FROM " + TABLE_PARTICIPANTS, null);
-
-        while (cursor.moveToNext()){
-            int id = cursor.getInt(cursor.getColumnIndex("participant_id"));
-            String register_number = cursor.getString(cursor.getColumnIndex("register_number"));
-            String name = cursor.getString(cursor.getColumnIndex("name"));
-            String mail = cursor.getString(cursor.getColumnIndex("mail"));
-            //participants.add(new Participant(id, register_number, name, mail));
-        }
-
-        cursor.close();
-
-        return participants;
-    }
-
-    public static Participant getLast() {
-        Participant participant = null;
-
-        String getAllQuery = "SELECT * FROM " + TABLE_PARTICIPANTS + " ORDER BY ID DESC";
+        String getAllQuery = "SELECT * FROM " + TABLE_EVENTS + " WHERE name LIKE '%" + participantName + "%'";
 
         Cursor cursor = gw.getDatabase().rawQuery(getAllQuery, null);
 
         while (cursor.moveToFirst()){
-            int id = cursor.getInt(cursor.getColumnIndex("participant_id"));
-            String register_number = cursor.getString(cursor.getColumnIndex("register_number"));
-            String name = cursor.getString(cursor.getColumnIndex("name"));
-            String mail = cursor.getString(cursor.getColumnIndex("mail"));
-            participant = new Participant(id, register_number, name, mail);
+            int id = cursor.getInt(cursor.getColumnIndex("event_id"));
+            String title = cursor.getString(cursor.getColumnIndex("title"));
+            String day = cursor.getString(cursor.getColumnIndex("day"));
+            String hour = cursor.getString(cursor.getColumnIndex("hour"));
+            String facilitator = cursor.getString(cursor.getColumnIndex("facilitator"));
+            String description = cursor.getString(cursor.getColumnIndex("description"));
+            participant = new Event(id, title, Integer.parseInt(day), Integer.parseInt(hour), facilitator, description);
         }
 
         cursor.close();
 
         return participant;
     }
+
+    public static boolean update(int id, String title, String day, String hour, String facilitator, String description) {
+        if (!(id > 0))
+            return create(title, day, hour, facilitator, description);
+
+        ContentValues cv = new ContentValues();
+        cv.put("title", title);
+        cv.put("day", day);
+        cv.put("hour", hour);
+        cv.put("facilitator", facilitator);
+        cv.put("description", description);
+
+        return gw.getDatabase().update(TABLE_EVENTS, cv, "ID=?", new String[]{ id + "" }) > 0;
+    }
+
+    public static int getId(String title){
+        int id = 0;
+        String getAllQuery = "SELECT id FROM " + TABLE_EVENTS + " WHERE title LIKE '%" + title + "%'";
+
+        Cursor cursor = gw.getDatabase().rawQuery(getAllQuery, null);
+
+        while (cursor.moveToFirst()){
+            id = cursor.getInt(cursor.getColumnIndex("event_id"));
+        }
+
+        cursor.close();
+
+        return id;
+    }
+
+    public static ArrayList<Event> getAll() {
+        ArrayList<Event> events = new ArrayList<>();
+
+        Cursor cursor = gw.getDatabase().rawQuery("SELECT * FROM " + TABLE_EVENTS, null);
+
+        while (cursor.moveToNext()){
+            int id = cursor.getInt(cursor.getColumnIndex("event_id"));
+            String title = cursor.getString(cursor.getColumnIndex("title"));
+            String day = cursor.getString(cursor.getColumnIndex("day"));
+            String hour = cursor.getString(cursor.getColumnIndex("hour"));
+            String facilitator = cursor.getString(cursor.getColumnIndex("facilitator"));
+            String description = cursor.getString(cursor.getColumnIndex("description"));
+            events.add(new Event(id, title, Integer.parseInt(day), Integer.parseInt(hour), facilitator, description));
+        }
+
+        cursor.close();
+
+        return events;
+    }
+
+    public static Event getLast() {
+        Event event;
+
+        String getAllQuery = "SELECT * FROM " + TABLE_EVENTS + " ORDER BY ID DESC";
+
+        Cursor cursor = gw.getDatabase().rawQuery(getAllQuery, null);
+
+        if (cursor.moveToFirst()){
+            int id = cursor.getInt(cursor.getColumnIndex("event_id"));
+            String title = cursor.getString(cursor.getColumnIndex("title"));
+            String day = cursor.getString(cursor.getColumnIndex("day"));
+            String hour = cursor.getString(cursor.getColumnIndex("hour"));
+            String facilitator = cursor.getString(cursor.getColumnIndex("facilitator"));
+            String description = cursor.getString(cursor.getColumnIndex("description"));
+
+            event = new Event(id, title, Integer.parseInt(day), Integer.parseInt(hour), facilitator, description);
+            cursor.close();
+
+            return event;
+        }
+
+        return null;
+    }
+
+
 
 }

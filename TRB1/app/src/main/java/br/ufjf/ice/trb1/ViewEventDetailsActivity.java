@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import model.Event;
+import persistence.EventDAO;
 
 public class ViewEventDetailsActivity extends AppCompatActivity {
 
@@ -35,8 +36,7 @@ public class ViewEventDetailsActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         String eventTitle = extras.getString("TITLE");
 
-        final Event result = null;
-        //Events.getInstance().searchFor(eventTitle)
+        final Event result = EventDAO.read(eventTitle);
 
         if(result != null) {
             title = findViewById(R.id.e_event_title_details);
@@ -49,7 +49,7 @@ public class ViewEventDetailsActivity extends AppCompatActivity {
             day.setText(Integer.toString(result.getDay()));
             hour.setText(Integer.toString(result.getHour()));
             facilitator.setText(result.getFacilitator());
-            description.setText(result.getTextDescription());
+            description.setText(result.getDescription());
 
             recyclerView = findViewById(R.id.e_participants_rv);
             layoutManager = new LinearLayoutManager(this);

@@ -14,9 +14,13 @@ import persistence.EventDAO;
 
 public class GetAllEventsFragment extends Fragment {
 
-    private RecyclerView recyclerView;
-    public RecyclerView.Adapter adapter;
+    private static RecyclerView recyclerView;
+    public static RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
+
+    public static RecyclerView.Adapter getAdapter() {
+        return adapter;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,7 +34,9 @@ public class GetAllEventsFragment extends Fragment {
 
         recyclerView = rootView.findViewById(R.id.all_events_rv);
         layoutManager = new LinearLayoutManager(getContext());
-        adapter = new GetAllEventsAdapter(EventDAO.getAll());
+
+        EventDAO eventDAO = new EventDAO(this.getContext());
+        adapter = new GetAllEventsAdapter(eventDAO.getAll());
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);

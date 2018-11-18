@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
 
         this.deleteDatabase(DBHandler.DATABASE_NAME);
 
-
         BottomNavigationView nav = findViewById(R.id.bottomNavigationView);
 
         nav.setOnNavigationItemSelectedListener(navigationListener);

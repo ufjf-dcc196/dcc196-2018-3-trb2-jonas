@@ -3,9 +3,7 @@ package persistence;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-
 import java.util.ArrayList;
-
 import model.Participant;
 
 public class ParticipantDAO {
@@ -91,7 +89,7 @@ public class ParticipantDAO {
     }
 
     public static Participant getLast() {
-        Participant participant = null;
+        Participant participant;
 
         String getAllQuery = "SELECT * FROM " + TABLE_PARTICIPANTS + " ORDER BY participant_id DESC";
 
