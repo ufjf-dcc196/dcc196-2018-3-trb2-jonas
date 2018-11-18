@@ -26,11 +26,50 @@ public class ParticipantDAO {
     }
 
     public static Participant read(String participantName) {
-        return null;
+        Participant participant = null;
+
+        String getAllQuery = "SELECT * FROM " + TABLE_PARTICIPANTS + " WHERE name LIKE '%" + participantName + "%'";
+
+        Cursor cursor = gw.getDatabase().rawQuery(getAllQuery, null);
+
+        while (cursor.moveToFirst()){
+            int id = cursor.getInt(cursor.getColumnIndex("participant_id"));
+            String register_number = cursor.getString(cursor.getColumnIndex("register_number"));
+            String name = cursor.getString(cursor.getColumnIndex("name"));
+            String mail = cursor.getString(cursor.getColumnIndex("mail"));
+            participant = new Participant(id, register_number, name, mail);
+        }
+
+        cursor.close();
+
+        return participant;
     }
 
-    public static boolean update(Participant participant) {
-        return false;
+    public static boolean update(int id, String registerNumber, String name, String mail) {
+        if (!(id > 0))
+            return create(registerNumber, name, mail);
+
+        ContentValues cv = new ContentValues();
+        cv.put("name", name);
+        cv.put("register_number", registerNumber);
+        cv.put("mail", mail);
+
+        return gw.getDatabase().update(TABLE_PARTICIPANTS, cv, "ID=?", new String[]{ id + "" }) > 0;
+    }
+
+    public static int getId(String name){
+        int id = 0;
+        String getAllQuery = "SELECT id FROM " + TABLE_PARTICIPANTS + " WHERE name LIKE '%" + name + "%'";
+
+        Cursor cursor = gw.getDatabase().rawQuery(getAllQuery, null);
+
+        while (cursor.moveToFirst()){
+            id = cursor.getInt(cursor.getColumnIndex("participant_id"));
+        }
+
+        cursor.close();
+
+        return id;
     }
 
     public static ArrayList<Participant> getAll() {

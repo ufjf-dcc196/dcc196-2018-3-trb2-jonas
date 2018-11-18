@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import model.Participant;
 import persistence.ParticipantDAO;
+import utils.NotificationService;
 
 public class EditParticipantActivity extends AppCompatActivity {
 
@@ -47,15 +48,15 @@ public class EditParticipantActivity extends AppCompatActivity {
                 String newRegisterNumber = pRegisterNumber.getText().toString();
 
                 if(newName == null || newName.isEmpty())
-                    Toast.makeText(v.getContext(), "Insira um nome válido!", Toast.LENGTH_SHORT).show();
+                    NotificationService.sendToast(v, "Insira um nome válido!");
                 else if(newMail == null || newMail.isEmpty())
-                    Toast.makeText(v.getContext(), "Insira um e-mail válido!", Toast.LENGTH_SHORT).show();
+                    NotificationService.sendToast(v, "Insira um e-mail válido!");
                 else if(newRegisterNumber == null || newRegisterNumber.isEmpty())
-                    Toast.makeText(v.getContext(), "Insira um CPF válido!", Toast.LENGTH_SHORT).show();
+                    NotificationService.sendToast(v, "Insira um CPF válido!");
                 else{
-                    //ParticipantDAO.update(new Participant(newName, newRegisterNumber, newMail));
+                    ParticipantDAO.update(ParticipantDAO.getId(nameContent), newName, newRegisterNumber, newMail);
 
-                    Toast.makeText(v.getContext(), newName + " modificado com sucesso!", Toast.LENGTH_SHORT).show();
+                    NotificationService.sendToast(v, newName + " modificado com sucesso!");
 
                     Intent intent = new Intent(v.getContext(), MainActivity.class);
                     v.getContext().startActivity(intent);
