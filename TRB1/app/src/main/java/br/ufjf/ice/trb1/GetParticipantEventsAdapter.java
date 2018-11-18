@@ -15,7 +15,7 @@ import model.Participant;
 
 public class GetParticipantEventsAdapter extends RecyclerView.Adapter<GetParticipantEventsAdapter.GetParticipantEventsViewHolder>{
 
-    private ArrayList<Event> eventList;
+    private ArrayList<Event> events;
     private Participant participant;
 
     public static class GetParticipantEventsViewHolder extends RecyclerView.ViewHolder{
@@ -29,7 +29,7 @@ public class GetParticipantEventsAdapter extends RecyclerView.Adapter<GetPartici
     }
 
     public GetParticipantEventsAdapter(ArrayList<Event> events, Participant participant){
-        eventList = events;
+        this.events = events;
         this.participant = participant;
     }
 
@@ -42,7 +42,7 @@ public class GetParticipantEventsAdapter extends RecyclerView.Adapter<GetPartici
 
     @Override
     public void onBindViewHolder(@NonNull GetParticipantEventsAdapter.GetParticipantEventsViewHolder viewHolder, final int i) {
-        final Event currentEvent = eventList.get(i);
+        final Event currentEvent = this.events.get(i);
 
         viewHolder.eventTitle.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -59,6 +59,6 @@ public class GetParticipantEventsAdapter extends RecyclerView.Adapter<GetPartici
 
     @Override
     public int getItemCount() {
-        return eventList.size();
+        return this.events.size();
     }
 }

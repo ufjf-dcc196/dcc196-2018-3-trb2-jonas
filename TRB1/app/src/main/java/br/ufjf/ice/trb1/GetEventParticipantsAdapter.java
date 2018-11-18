@@ -13,7 +13,7 @@ import model.Participant;
 
 public class GetEventParticipantsAdapter extends RecyclerView.Adapter<GetEventParticipantsAdapter.GetEventParticipantsViewHolder>{
 
-    private ArrayList<Participant> participantsList;
+    private ArrayList<Participant> participants;
 
     public static class GetEventParticipantsViewHolder extends RecyclerView.ViewHolder{
         public TextView participantName;
@@ -26,7 +26,7 @@ public class GetEventParticipantsAdapter extends RecyclerView.Adapter<GetEventPa
     }
 
     public GetEventParticipantsAdapter(ArrayList<Participant> subscribed){
-        participantsList = subscribed;
+        participants = subscribed;
     }
 
     @NonNull
@@ -38,13 +38,13 @@ public class GetEventParticipantsAdapter extends RecyclerView.Adapter<GetEventPa
 
     @Override
     public void onBindViewHolder(@NonNull GetEventParticipantsAdapter.GetEventParticipantsViewHolder viewHolder, final int i) {
-        Participant currentParticipant = participantsList.get(i);
+        Participant currentParticipant = participants.get(i);
 
         viewHolder.participantName.setText(currentParticipant.getName());
     }
 
     @Override
     public int getItemCount() {
-        return participantsList.size();
+        return participants.size();
     }
 }

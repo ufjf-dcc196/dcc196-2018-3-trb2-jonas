@@ -26,7 +26,7 @@ public class GetAllParticipantsAdapter extends RecyclerView.Adapter<GetAllPartic
     }
 
     public GetAllParticipantsAdapter(ArrayList<Participant> participants) {
-        participants = participants;
+        this.participants = participants;
     }
 
     @NonNull
@@ -39,7 +39,7 @@ public class GetAllParticipantsAdapter extends RecyclerView.Adapter<GetAllPartic
 
     @Override
     public void onBindViewHolder(@NonNull GetAllParticipantsViewHolder getAllParticipantsViewHolder, final int i) {
-        Participant currentParticipant = participants.get(i);
+        Participant currentParticipant = this.participants.get(i);
         getAllParticipantsViewHolder.participantName.setText(currentParticipant.getName());
 
         getAllParticipantsViewHolder.participantName.setOnClickListener(new View.OnClickListener() {
@@ -54,11 +54,11 @@ public class GetAllParticipantsAdapter extends RecyclerView.Adapter<GetAllPartic
 
     @Override
     public int getItemCount() {
-        return participants.size();
+        return this.participants.size();
     }
 
     public void addParticipant(Participant participant){
-        participants.add(participant);
+        this.participants.add(participant);
         notifyItemInserted(getItemCount());
     }
 }
