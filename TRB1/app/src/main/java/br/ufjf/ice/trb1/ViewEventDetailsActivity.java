@@ -53,7 +53,7 @@ public class ViewEventDetailsActivity extends AppCompatActivity {
 
             recyclerView = findViewById(R.id.e_participants_rv);
             layoutManager = new LinearLayoutManager(this);
-            //adapter = new GetEventParticipantsAdapter(result.getParticipants());
+            //adapter = new GetEventParticipantsAdapter(result.getParZticipants());
 
             recyclerView.setLayoutManager(layoutManager);
             //recyclerView.setAdapter(adapter);
