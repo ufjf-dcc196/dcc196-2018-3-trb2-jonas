@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import model.Event;
 import model.Participant;
+import persistence.ParticipantEventDAO;
 
 public class GetParticipantEventsAdapter extends RecyclerView.Adapter<GetParticipantEventsAdapter.GetParticipantEventsViewHolder>{
 
@@ -41,14 +42,16 @@ public class GetParticipantEventsAdapter extends RecyclerView.Adapter<GetPartici
     }
 
     @Override
-    public void onBindViewHolder(@NonNull GetParticipantEventsAdapter.GetParticipantEventsViewHolder viewHolder, final int i) {
+    public void onBindViewHolder(@NonNull GetParticipantEventsAdapter.GetParticipantEventsViewHolder viewHolder, int i) {
         final Event currentEvent = this.events.get(i);
 
         viewHolder.eventTitle.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                //participant.getEvents().remove(currentEvent);
-                //Events.getInstance().searchFor(currentEvent.getEventTitle()).removeParticipant(participant);
+                ParticipantEventDAO participantEventDAO = new ParticipantEventDAO(v.getContext());
+                participantEventDAO.delete(participantEventDAO.getId(participant.getId(), currentEvent.getId()));
+                deleteEvent(currentEvent);
+
                 Toast.makeText(v.getContext(), "Evento removido!", Toast.LENGTH_SHORT).show();
                 return true;
             }
@@ -60,5 +63,10 @@ public class GetParticipantEventsAdapter extends RecyclerView.Adapter<GetPartici
     @Override
     public int getItemCount() {
         return this.events.size();
+    }
+
+    public void deleteEvent(Event event){
+        this.events.remove(event);
+        notifyItemRemoved(getItemCount());
     }
 }

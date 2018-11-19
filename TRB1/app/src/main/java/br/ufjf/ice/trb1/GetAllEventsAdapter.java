@@ -56,14 +56,8 @@ public class GetAllEventsAdapter extends RecyclerView.Adapter<GetAllEventsAdapte
         return this.events.size();
     }
 
-    public void updateEvent(Event participant){
-        int position = this.events.indexOf(participant);
-        this.events.set(position, participant);
-        notifyItemChanged(position);
-    }
-
-    public void addEvent(Event participant){
-        this.events.add(participant);
+    public void addEvent(Event event){
+        this.events.add(event);
         notifyItemInserted(getItemCount());
     }
 }

@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import model.Participant;
 import model.Event;
+import persistence.EventDAO;
 import persistence.ParticipantDAO;
 import persistence.ParticipantEventDAO;
 
@@ -26,7 +27,11 @@ public class AddEventToParticipantActivity extends AppCompatActivity {
 
         Participant selectedParticipant = ParticipantDAO.read(participantName);
 
-        ArrayList<Event> currentNotSubscribedEvents = ParticipantEventDAO.getOtherEvents(selectedParticipant.getId());
+        ArrayList<Event> allEvents = EventDAO.getAll();
+
+        ArrayList<Event> currentSubscribed = ParticipantEventDAO.getEvents(this, selectedParticipant.getId());
+
+        ArrayList<Event> currentNotSubscribedEvents = getNotCurrentSubscribed(allEvents, currentSubscribed);
 
         recyclerView = findViewById(R.id.non_subscribed_events_rv);
         layoutManager = new LinearLayoutManager(this);
@@ -34,5 +39,32 @@ public class AddEventToParticipantActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
+    }
+
+    public ArrayList<Event> getNotCurrentSubscribed( ArrayList<Event> allEvents, ArrayList<Event> currentSubscribed) {
+        ArrayList<Event> notSubscribed = new ArrayList<>();
+
+        ArrayList<String> availableEvents = new ArrayList<>();
+
+        for (Event available: allEvents) {
+            availableEvents.add(available.getEventTitle());
+        }
+
+        ArrayList<String> subscribedEvents = new ArrayList<>();
+
+        for (Event subscribed: currentSubscribed) {
+            subscribedEvents.add(subscribed.getEventTitle());
+        }
+
+        availableEvents.removeAll(subscribedEvents);
+
+        for (String event : availableEvents) {
+            for (Event e: allEvents) {
+                if(e.getEventTitle().equalsIgnoreCase(event))
+                    notSubscribed.add(e);
+            }
+        }
+
+        return notSubscribed;
     }
 }

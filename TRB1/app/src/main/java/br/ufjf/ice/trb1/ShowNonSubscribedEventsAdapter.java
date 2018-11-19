@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import model.Event;
 import model.Participant;
+import persistence.ParticipantEventDAO;
 
 public class ShowNonSubscribedEventsAdapter extends RecyclerView.Adapter<ShowNonSubscribedEventsAdapter.ShowNonSubscribedEventsViewHolder> {
     private ArrayList<Event> eventsList;
@@ -48,9 +49,8 @@ public class ShowNonSubscribedEventsAdapter extends RecyclerView.Adapter<ShowNon
             public void onClick(View v) {
                 Event currentEvent = eventsList.get(i);
 
-                //participant.getEvents().add(currentEvent);
-
-                //Events.getInstance().searchFor(currentEvent.getEventTitle()).addParticipant(participant);
+                ParticipantEventDAO participantEventDAO = new ParticipantEventDAO(v.getContext());
+                participantEventDAO.create(participant.getId(), currentEvent.getId());
 
                 Toast.makeText(v.getContext(), "Evento adicionado!", Toast.LENGTH_SHORT).show();
 
