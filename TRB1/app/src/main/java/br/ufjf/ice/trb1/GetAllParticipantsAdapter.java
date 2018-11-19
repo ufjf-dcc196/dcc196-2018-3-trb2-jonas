@@ -7,12 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import java.util.ArrayList;
+import java.util.List;
+
 import model.Participant;
 
 public class GetAllParticipantsAdapter extends RecyclerView.Adapter<GetAllParticipantsAdapter.GetAllParticipantsViewHolder> {
 
-    private ArrayList<Participant> participants;
+    private List<Participant> participants;
 
     public static class GetAllParticipantsViewHolder extends RecyclerView.ViewHolder {
         public TextView participantName;
@@ -25,7 +26,7 @@ public class GetAllParticipantsAdapter extends RecyclerView.Adapter<GetAllPartic
         }
     }
 
-    public GetAllParticipantsAdapter(ArrayList<Participant> participants) {
+    public GetAllParticipantsAdapter(List<Participant> participants) {
         this.participants = participants;
     }
 
@@ -38,15 +39,16 @@ public class GetAllParticipantsAdapter extends RecyclerView.Adapter<GetAllPartic
     }
 
     @Override
-    public void onBindViewHolder(@NonNull GetAllParticipantsViewHolder getAllParticipantsViewHolder, final int i) {
+    public void onBindViewHolder(@NonNull GetAllParticipantsViewHolder getAllParticipantsViewHolder, int i) {
         Participant currentParticipant = this.participants.get(i);
+        final String name = participants.get(i).getName();
         getAllParticipantsViewHolder.participantName.setText(currentParticipant.getName());
 
         getAllParticipantsViewHolder.participantName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), ViewParticipantDetailsActivity.class);
-                intent.putExtra("NAME", participants.get(i).getName());
+                intent.putExtra("NAME", name);
                 v.getContext().startActivity(intent);
             }
         });
@@ -57,10 +59,19 @@ public class GetAllParticipantsAdapter extends RecyclerView.Adapter<GetAllPartic
         return this.participants.size();
     }
 
-    public void updateParticipant(Participant participant){
-        int position = participants.indexOf(participant);
-        this.participants.set(position, participant);
+    public void updateParticipant(Participant oldParticipant, Participant newParticipant){
+        int position = searchFor(oldParticipant);
+        this.participants.set(position, newParticipant);
         notifyItemChanged(position);
+    }
+
+    private int searchFor(Participant oldParticipant) {
+        for (int i = 0; i < this.participants.size(); i++){
+            if(((Participant) participants.toArray()[i]).getName().equalsIgnoreCase(oldParticipant.getName()))
+                return i;
+        }
+
+        return -1;
     }
 
     public void addParticipant(Participant participant){

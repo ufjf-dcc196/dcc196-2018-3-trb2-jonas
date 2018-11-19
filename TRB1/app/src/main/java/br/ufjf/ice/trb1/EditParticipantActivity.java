@@ -32,12 +32,12 @@ public class EditParticipantActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         final String nameContent = extras.getString("P_NAME");
         String mailContent = extras.getString("P_MAIL");
-        String idContent = extras.getString("P_ID");
+        String registerNumberContent = extras.getString("P_REGISTER_NUMBER");
 
-        if(!(nameContent.isEmpty() || mailContent.isEmpty() || idContent.isEmpty())){
+        if(!(nameContent.isEmpty() || mailContent.isEmpty() || registerNumberContent.isEmpty())){
             pName.setText(nameContent);
             pMail.setText(mailContent);
-            pRegisterNumber.setText(idContent);
+            pRegisterNumber.setText(registerNumberContent);
         }
 
         pSave.setOnClickListener(new View.OnClickListener() {
@@ -55,11 +55,12 @@ public class EditParticipantActivity extends AppCompatActivity {
                     NotificationService.sendToast(v, "Insira um CPF válido!");
                 else{
                     int id = ParticipantDAO.getId(nameContent);
-
-                    ParticipantDAO.update(id, newName, newRegisterNumber, newMail);
+                    Participant old = ParticipantDAO.read(id);
+                    ParticipantDAO.update(id, newRegisterNumber, newName, newMail);
 
                     ((GetAllParticipantsAdapter) GetAllParticipantsFragment.getAdapter()).updateParticipant(
-                            new Participant(id, newName, newRegisterNumber, newMail)
+                            old,
+                            new Participant(id, newRegisterNumber, newName, newMail)
                     );
 
                     NotificationService.sendToast(v, newName + " modificado com sucesso!");

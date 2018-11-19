@@ -54,12 +54,12 @@ public class ParticipantDAO {
         cv.put("register_number", registerNumber);
         cv.put("mail", mail);
 
-        return gw.getDatabase().update(TABLE_PARTICIPANTS, cv, "ID=?", new String[]{ id + "" }) > 0;
+        return gw.getDatabase().update(TABLE_PARTICIPANTS, cv, "participant_id=?", new String[]{ id + "" }) > 0;
     }
 
     public static int getId(String name){
         int id = -1;
-        String getAllQuery = "SELECT id FROM " + TABLE_PARTICIPANTS + " WHERE name LIKE '%" + name + "%'";
+        String getAllQuery = "SELECT participant_id FROM " + TABLE_PARTICIPANTS + " WHERE name LIKE '%" + name + "%'";
 
         Cursor cursor = gw.getDatabase().rawQuery(getAllQuery, null);
 
@@ -111,22 +111,25 @@ public class ParticipantDAO {
     }
 
     public static Participant read(int id) {
-        Participant participant = null;
+        Participant participant;
 
         String getAllQuery = "SELECT * FROM " + TABLE_PARTICIPANTS + " WHERE participant_id =" + id;
 
         Cursor cursor = gw.getDatabase().rawQuery(getAllQuery, null);
 
-        while (cursor.moveToFirst()){
+        if (cursor.moveToFirst()){
             String register_number = cursor.getString(cursor.getColumnIndex("register_number"));
             String name = cursor.getString(cursor.getColumnIndex("name"));
             String mail = cursor.getString(cursor.getColumnIndex("mail"));
             participant = new Participant(id, register_number, name, mail);
+
+
+            cursor.close();
+
+            return participant;
         }
 
-        cursor.close();
-
-        return participant;
+        return null;
 
     }
 }
