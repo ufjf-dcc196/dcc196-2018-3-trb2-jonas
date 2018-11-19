@@ -17,6 +17,7 @@ import persistence.ParticipantEventDAO;
 public class ShowNonSubscribedEventsAdapter extends RecyclerView.Adapter<ShowNonSubscribedEventsAdapter.ShowNonSubscribedEventsViewHolder> {
     private ArrayList<Event> eventsList;
     private Participant participant;
+    private Event currentEvent;
 
     public static class ShowNonSubscribedEventsViewHolder extends RecyclerView.ViewHolder{
         public TextView eventTitle;
@@ -41,16 +42,17 @@ public class ShowNonSubscribedEventsAdapter extends RecyclerView.Adapter<ShowNon
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ShowNonSubscribedEventsAdapter.ShowNonSubscribedEventsViewHolder viewHolder, final int i) {
-        Event currentEvent = eventsList.get(i);
+    public void onBindViewHolder(@NonNull final ShowNonSubscribedEventsAdapter.ShowNonSubscribedEventsViewHolder viewHolder, int i) {
+        final Event event = eventsList.get(i);
+        currentEvent = event;
 
         viewHolder.eventTitle.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                Event currentEvent = eventsList.get(i);
-
                 ParticipantEventDAO participantEventDAO = new ParticipantEventDAO(v.getContext());
                 participantEventDAO.create(participant.getId(), currentEvent.getId());
+                deleteEvent(currentEvent);
 
                 Toast.makeText(v.getContext(), "Evento adicionado!", Toast.LENGTH_SHORT).show();
 
@@ -63,5 +65,10 @@ public class ShowNonSubscribedEventsAdapter extends RecyclerView.Adapter<ShowNon
     @Override
     public int getItemCount() {
         return eventsList.size();
+    }
+
+    public void deleteEvent(Event event){
+        this.eventsList.remove(event);
+        notifyItemRemoved(getItemCount());
     }
 }

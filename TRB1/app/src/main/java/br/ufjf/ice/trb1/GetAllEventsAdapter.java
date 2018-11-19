@@ -13,6 +13,7 @@ import model.Event;
 public class GetAllEventsAdapter extends RecyclerView.Adapter<GetAllEventsAdapter.GetAllEventsViewHolder> {
 
     private ArrayList<Event> events;
+    private Event currentEvent;
 
     public static class GetAllEventsViewHolder extends RecyclerView.ViewHolder{
         public TextView eventTitle;
@@ -36,14 +37,14 @@ public class GetAllEventsAdapter extends RecyclerView.Adapter<GetAllEventsAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull GetAllEventsViewHolder getAllEventsViewHolder, final int i) {
-        Event currentEvent = this.events.get(i);
+    public void onBindViewHolder(@NonNull GetAllEventsViewHolder getAllEventsViewHolder, int i) {
+        currentEvent = this.events.get(i);
 
         getAllEventsViewHolder.eventTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), ViewEventDetailsActivity.class);
-                intent.putExtra("TITLE", events.get(i).getEventTitle());
+                intent.putExtra("TITLE", currentEvent.getEventTitle());
                 v.getContext().startActivity(intent);
             }
         });

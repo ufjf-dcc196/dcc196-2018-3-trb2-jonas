@@ -18,6 +18,7 @@ public class GetParticipantEventsAdapter extends RecyclerView.Adapter<GetPartici
 
     private ArrayList<Event> events;
     private Participant participant;
+    private Event currentEvent;
 
     public static class GetParticipantEventsViewHolder extends RecyclerView.ViewHolder{
         public TextView eventTitle;
@@ -43,11 +44,12 @@ public class GetParticipantEventsAdapter extends RecyclerView.Adapter<GetPartici
 
     @Override
     public void onBindViewHolder(@NonNull GetParticipantEventsAdapter.GetParticipantEventsViewHolder viewHolder, int i) {
-        final Event currentEvent = this.events.get(i);
+        currentEvent = this.events.get(i);
 
         viewHolder.eventTitle.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
+
                 ParticipantEventDAO participantEventDAO = new ParticipantEventDAO(v.getContext());
                 participantEventDAO.delete(participantEventDAO.getId(participant.getId(), currentEvent.getId()));
                 deleteEvent(currentEvent);

@@ -14,6 +14,7 @@ import model.Participant;
 public class GetAllParticipantsAdapter extends RecyclerView.Adapter<GetAllParticipantsAdapter.GetAllParticipantsViewHolder> {
 
     private List<Participant> participants;
+    private String name;
 
     public static class GetAllParticipantsViewHolder extends RecyclerView.ViewHolder {
         public TextView participantName;
@@ -41,7 +42,7 @@ public class GetAllParticipantsAdapter extends RecyclerView.Adapter<GetAllPartic
     @Override
     public void onBindViewHolder(@NonNull GetAllParticipantsViewHolder getAllParticipantsViewHolder, int i) {
         Participant currentParticipant = this.participants.get(i);
-        final String name = participants.get(i).getName();
+        name = participants.get(i).getName();
         getAllParticipantsViewHolder.participantName.setText(currentParticipant.getName());
 
         getAllParticipantsViewHolder.participantName.setOnClickListener(new View.OnClickListener() {

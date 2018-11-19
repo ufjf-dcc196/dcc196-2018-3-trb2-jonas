@@ -25,11 +25,14 @@ public class AddEventToParticipantActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         String participantName = extras.getString("NAME");
 
-        Participant selectedParticipant = ParticipantDAO.read(participantName);
+        ParticipantDAO participantDAO = new ParticipantDAO(this);
+        Participant selectedParticipant = participantDAO.read(participantName);
 
-        ArrayList<Event> allEvents = EventDAO.getAll();
+        EventDAO eventDAO = new EventDAO(this);
+        ArrayList<Event> allEvents = eventDAO.getAll();
 
-        ArrayList<Event> currentSubscribed = ParticipantEventDAO.getEvents(this, selectedParticipant.getId());
+        ParticipantEventDAO participantEventDAO = new ParticipantEventDAO(this);
+        ArrayList<Event> currentSubscribed = participantEventDAO.getEvents(this, selectedParticipant.getId());
 
         ArrayList<Event> currentNotSubscribedEvents = getNotCurrentSubscribed(allEvents, currentSubscribed);
 
