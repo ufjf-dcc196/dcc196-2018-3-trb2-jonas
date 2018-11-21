@@ -13,11 +13,11 @@ import java.util.ArrayList;
 import model.Event;
 import model.Participant;
 import persistence.ParticipantEventDAO;
+import utils.NotificationService;
 
 public class ShowNonSubscribedEventsAdapter extends RecyclerView.Adapter<ShowNonSubscribedEventsAdapter.ShowNonSubscribedEventsViewHolder> {
-    private ArrayList<Event> eventsList;
+    private ArrayList<Event> events;
     private Participant participant;
-    private Event currentEvent;
 
     public static class ShowNonSubscribedEventsViewHolder extends RecyclerView.ViewHolder{
         public TextView eventTitle;
@@ -31,7 +31,7 @@ public class ShowNonSubscribedEventsAdapter extends RecyclerView.Adapter<ShowNon
 
     public ShowNonSubscribedEventsAdapter(ArrayList<Event> subscribed, Participant participant){
         this.participant = participant;
-        this.eventsList = subscribed;
+        this.events = subscribed;
     }
 
     @NonNull
@@ -43,32 +43,41 @@ public class ShowNonSubscribedEventsAdapter extends RecyclerView.Adapter<ShowNon
 
     @Override
     public void onBindViewHolder(@NonNull final ShowNonSubscribedEventsAdapter.ShowNonSubscribedEventsViewHolder viewHolder, int i) {
-        final Event event = eventsList.get(i);
-        currentEvent = event;
+        Event toBind = this.events.get(i);
 
         viewHolder.eventTitle.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 ParticipantEventDAO participantEventDAO = new ParticipantEventDAO(v.getContext());
-                participantEventDAO.create(participant.getId(), currentEvent.getId());
-                deleteEvent(currentEvent);
 
-                Toast.makeText(v.getContext(), "Evento adicionado!", Toast.LENGTH_SHORT).show();
+                participantEventDAO.create(participant.getId(), getItemId(viewHolder.getAdapterPosition()));
+
+                deleteEvent(viewHolder.getAdapterPosition());
+
+                NotificationService.sendToast(v, "Evento adicionado!");
 
             }
         });
 
-        viewHolder.eventTitle.setText(currentEvent.getEventTitle());
+        viewHolder.eventTitle.setText(toBind.getEventTitle());
     }
 
     @Override
     public int getItemCount() {
-        return eventsList.size();
+        return events.size();
     }
 
-    public void deleteEvent(Event event){
-        this.eventsList.remove(event);
-        notifyItemRemoved(getItemCount());
+    public void deleteEvent(int position){
+        Event toRemove = this.events.get(position);
+        this.events.remove(toRemove);
+        notifyItemRemoved(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        Event clicked = this.events.get(position);
+        int id = clicked.getId();
+        return id;
     }
 }

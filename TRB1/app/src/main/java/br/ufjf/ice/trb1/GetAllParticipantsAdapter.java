@@ -40,7 +40,7 @@ public class GetAllParticipantsAdapter extends RecyclerView.Adapter<GetAllPartic
     }
 
     @Override
-    public void onBindViewHolder(@NonNull GetAllParticipantsViewHolder getAllParticipantsViewHolder, int i) {
+    public void onBindViewHolder(@NonNull final GetAllParticipantsViewHolder getAllParticipantsViewHolder, int i) {
         Participant currentParticipant = this.participants.get(i);
         name = participants.get(i).getName();
         getAllParticipantsViewHolder.participantName.setText(currentParticipant.getName());
@@ -48,11 +48,17 @@ public class GetAllParticipantsAdapter extends RecyclerView.Adapter<GetAllPartic
         getAllParticipantsViewHolder.participantName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int position = getAllParticipantsViewHolder.getAdapterPosition();
                 Intent intent = new Intent(v.getContext(), ViewParticipantDetailsActivity.class);
-                intent.putExtra("NAME", name);
+                intent.putExtra("NAME", getNameParticipant(position));
                 v.getContext().startActivity(intent);
             }
         });
+    }
+
+    private String getNameParticipant(int position) {
+        Participant participant = this.participants.get(position);
+        return participant.getName();
     }
 
     @Override

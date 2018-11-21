@@ -16,7 +16,7 @@ public class ParticipantEventDAO {
         gw = DBGateway.getInstance(ctx);
     }
 
-    public static boolean create(int participant_id, int event_id){
+    public static boolean create(int participant_id, long event_id){
         ContentValues cv = new ContentValues();
         cv.put("participant_id", participant_id);
         cv.put("event_id", event_id);
@@ -57,7 +57,7 @@ public class ParticipantEventDAO {
         return events;
     }
 
-    public static int getId(int participantId, int eventId){
+    public static int getId(int participantId, long eventId){
         int id = -1;
         String getAllQuery ="SELECT participant_event_id FROM " + TABLE_PARTICIPANT_EVENT +
                             " WHERE participant_id == " + participantId +

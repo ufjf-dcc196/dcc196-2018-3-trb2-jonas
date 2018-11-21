@@ -43,7 +43,7 @@ public class GetParticipantEventsAdapter extends RecyclerView.Adapter<GetPartici
     }
 
     @Override
-    public void onBindViewHolder(@NonNull GetParticipantEventsAdapter.GetParticipantEventsViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull final GetParticipantEventsAdapter.GetParticipantEventsViewHolder viewHolder, int i) {
         currentEvent = this.events.get(i);
 
         viewHolder.eventTitle.setOnLongClickListener(new View.OnLongClickListener() {
@@ -51,8 +51,8 @@ public class GetParticipantEventsAdapter extends RecyclerView.Adapter<GetPartici
             public boolean onLongClick(View v) {
 
                 ParticipantEventDAO participantEventDAO = new ParticipantEventDAO(v.getContext());
-                participantEventDAO.delete(participantEventDAO.getId(participant.getId(), currentEvent.getId()));
-                deleteEvent(currentEvent);
+                participantEventDAO.delete(participantEventDAO.getId(participant.getId(), getItemId(viewHolder.getAdapterPosition())));
+                deleteEvent(viewHolder.getAdapterPosition());
 
                 Toast.makeText(v.getContext(), "Evento removido!", Toast.LENGTH_SHORT).show();
                 return true;
@@ -67,8 +67,16 @@ public class GetParticipantEventsAdapter extends RecyclerView.Adapter<GetPartici
         return this.events.size();
     }
 
-    public void deleteEvent(Event event){
-        this.events.remove(event);
-        notifyItemRemoved(getItemCount());
+    public void deleteEvent(int position){
+        Event toRemove = this.events.get(position);
+        this.events.remove(toRemove);
+        notifyItemRemoved(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        Event clicked = this.events.get(position);
+        int id = clicked.getId();
+        return id;
     }
 }

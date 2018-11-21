@@ -37,19 +37,26 @@ public class GetAllEventsAdapter extends RecyclerView.Adapter<GetAllEventsAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull GetAllEventsViewHolder getAllEventsViewHolder, int i) {
+    public void onBindViewHolder(@NonNull final GetAllEventsViewHolder getAllEventsViewHolder, int i) {
         currentEvent = this.events.get(i);
 
         getAllEventsViewHolder.eventTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int position = getAllEventsViewHolder.getAdapterPosition();
+
                 Intent intent = new Intent(v.getContext(), ViewEventDetailsActivity.class);
-                intent.putExtra("TITLE", currentEvent.getEventTitle());
+                intent.putExtra("TITLE", getEventTitle(position));
                 v.getContext().startActivity(intent);
             }
         });
 
         getAllEventsViewHolder.eventTitle.setText(currentEvent.getEventTitle());
+    }
+
+    private String getEventTitle(int position) {
+        Event event = this.events.get(position);
+        return event.getEventTitle();
     }
 
     @Override
